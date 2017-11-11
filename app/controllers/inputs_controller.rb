@@ -69,12 +69,7 @@ class InputsController < ApplicationController
   end
 
   private
-    def input_selects
-          @input_laboratory = InputLaboratory.where(laboratory_id: current_laboratory.id)
-          #@atendment_region = AtendmentRegion.where(status: true, user_id: current_user.id)
-          #@atendment_assoc = AtendmentRegionAssoc.where(status: true, assoc_id: current_user.entidade_id).where(atendment_region_id: @atendment_region.map(&:atendment_region_id))
-          #@solutions = Atendment.joins(:solution).where("atendment_area_id = ? and atendment_region_id = ? and atendment_assoc_id = ?", params[:atendment_area_id], params[:atendment_region_id], params[:atendment_region_assoc_id])
-   end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_input
       @input = Input.find(params[:id])

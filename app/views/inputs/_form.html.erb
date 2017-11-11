@@ -14,8 +14,6 @@
   <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
     <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :input_laboratory_id %>
-    <%= @input.laboratory_id %>
-        <%= form.select :input_laboratory_id, options_for_select(@input_laboratory.collect { |c| [ c.input_laboratory.name, c.id ] }, 1), {:prompt=>"Área"}, { :class => 'form-control', :required => true, id: 'input_input_laboratory_id' } %>
   </div>
   <div class="field">
     <%= form.label :product_id, "Produto" %>
