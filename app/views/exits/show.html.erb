@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Estoque:</strong>
+  <%= @exit.stock %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @exit.amount %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @exit.date %>
+</p>
+
+<p>
+  <strong>Comentário:</strong>
+  <%= @exit.comment %>
+</p>
+
+<%= link_to 'Editar', edit_exit_path(@exit) %> |
+<%= link_to 'Voltar', exits_path %>

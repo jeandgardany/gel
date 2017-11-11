@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Código:</strong>
+  <%= @laboratory.code %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @laboratory.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @laboratory.description %>
+</p>
+
+<p>
+  <strong>Capacidade:</strong>
+  <%= @laboratory.capacity %>
+</p>
+
+<%= link_to 'Editar', edit_laboratory_path(@laboratory) %> |
+<%= link_to 'Voltar', laboratories_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  laboratory: one
+  product: one
+  shelfLife: 2017-11-09
+  lifeCycle: 1
+  amount: 1
+  unitaryValue: 9.99
+  value: 9.99
+  date: 2017-11-09
+
+two:
+  laboratory: two
+  product: two
+  shelfLife: 2017-11-09
+  lifeCycle: 1
+  amount: 1
+  unitaryValue: 9.99
+  value: 9.99
+  date: 2017-11-09

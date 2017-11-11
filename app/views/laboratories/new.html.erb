@@ -1,0 +1,6 @@
+<h1>Novo Laboratorio</h1>
+
+<%= render 'form', laboratory: @laboratory %>
+
+<%= link_to t('.new', :default => t("Voltar")),
+            laboratories_path, :class => 'btn btn-primary' %>

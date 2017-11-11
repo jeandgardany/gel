@@ -1,0 +1,60 @@
+<%= form_with(model: input, local: true) do |form| %>
+  <% if input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(input.errors.count, "error") %> prohibited this input from being saved:</h2>
+
+      <ul>
+      <% input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :laboratory_id, "Laboratório" %>
+    <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :input_laboratory_id %>
+    <%= @input.laboratory_id %>
+        <%= form.select :input_laboratory_id, options_for_select(@input_laboratory.collect { |c| [ c.input_laboratory.name, c.id ] }, 1), {:prompt=>"Área"}, { :class => 'form-control', :required => true, id: 'input_input_laboratory_id' } %>
+  </div>
+  <div class="field">
+    <%= form.label :product_id, "Produto" %>
+    <%= form.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :input_product_id %>
+    <%= link_to t('.new', :default => t("Novo Produto")),
+            new_product_path, :class => 'btn btn-success btn-sm' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shelfLife, "Validade" %>
+    <%= form.date_select :shelfLife, :order => [:day, :month, :year], id: :input_shelfLife %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lifeCycle, "Ciclo de Vida" %>
+    <%= form.number_field :lifeCycle, id: :input_lifeCycle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount, "Quantidade" %>
+    <%= form.number_field :amount, id: :input_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unitaryValue, "Valor Unitário" %>
+    <%= form.text_field :unitaryValue, id: :input_unitaryValue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value, "Valor Total" %>
+    <%= form.text_field :value, id: :input_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date, "Data" %>
+    <%= form.date_select :date, :order => [:day, :month, :year], id: :input_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
