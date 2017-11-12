@@ -5,11 +5,25 @@ class InputsController < ApplicationController
   # GET /inputs.json
   def index
     @inputs = Input.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "inputs",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /inputs/1
   # GET /inputs/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "inputs",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /inputs/new

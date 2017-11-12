@@ -19,6 +19,6 @@
   <strong>Comentário:</strong>
   <%= @exit.comment %>
 </p>
-
-<%= link_to 'Editar', edit_exit_path(@exit) %> |
-<%= link_to 'Voltar', exits_path %>
+<%= link_to 'Imprimir', exit_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+<%= link_to 'Editar', edit_exit_path(@exit), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Voltar', exits_path, class: "btn btn-primary btn-sm" %>

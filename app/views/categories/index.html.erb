@@ -14,9 +14,9 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= link_to 'Mostrar', category %></td>
-        <td><%= link_to 'Editar', edit_category_path(category) %></td>
-        <td><%= link_to 'Apagar', category, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= link_to 'Mostrar', category, class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_category_path(category), class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to 'Apagar', category, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-primary btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'Nova Categoria', new_category_path %>
+<%= link_to 'Nova Categoria', new_category_path, class: "btn btn-primary btn-sm" %>

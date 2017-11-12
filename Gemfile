@@ -14,6 +14,10 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'devise'
 # Gera Relatorios em pdf
 gem 'prawn-rails'
+#transforma html em pdf
+gem 'wicked_pdf'
+#dependencia do wicked-pdf
+gem 'wkhtmltopdf-binary'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

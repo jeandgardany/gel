@@ -1,0 +1,22 @@
+<h1>Estoque</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Laboratório</th>
+      <th>Produto</th>
+      <th>Quantidade</th>      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.laboratory.name %></td>
+        <td><%= stock.product.name %></td>
+        <td><%= stock.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

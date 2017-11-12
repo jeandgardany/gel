@@ -5,11 +5,25 @@ class ExitsController < ApplicationController
   # GET /exits.json
   def index
     @exits = Exit.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "exits",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /exits/1
   # GET /exits/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "exits",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /exits/new
@@ -21,6 +35,7 @@ class ExitsController < ApplicationController
 
   # GET /exits/1/edit
   def edit
+    @stock_select = Stock.all
   end
 
   # POST /exits

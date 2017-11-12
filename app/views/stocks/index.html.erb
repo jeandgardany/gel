@@ -18,19 +18,20 @@
         <td><%= stock.laboratory %></td>
         <td><%= stock.product %></td>
         <td><%= stock.amount %></td>
-        <td><%= link_to 'Mostrar', stock %></td>
-        <td><%= link_to 'Editar', edit_stock_path(stock) %></td>
-        <td><%= link_to 'Apagar', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', stock, class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_stock_path(stock), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Apagar', stock, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%= link_to 'Imprimir', stocks_path(format: :pdf), class: "btn btn-danger btn-sm" %>
 
 <%= link_to t('.new', :default => t("Nova Entrada")),
-            new_input_path, :class => 'btn btn-primary' %>
+            new_input_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Nova Saída")),
-            new_exit_path, :class => 'btn btn-primary' %>
+            new_exit_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Voltar")),
-            home_index_path, :class => 'btn btn-primary' %>
+            home_index_path, :class => 'btn btn-primary btn-sm' %>

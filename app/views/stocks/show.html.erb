@@ -7,13 +7,13 @@
 
 <p>
   <strong>Laboratorio:</strong>
-  <%= @stock.laboratory %>
+  <%= @stock.laboratory.name %>
 </p>
 
 <p>
   <strong>Produto:</strong>
-  <%= @stock.product %>
+  <%= @stock.product.name %>
 </p>
 
-<%= link_to 'Editar', edit_stock_path(@stock) %> |
-<%= link_to 'Voltar', stocks_path %>
+<%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Voltar', stocks_path, class: "btn btn-primary btn-sm" %>

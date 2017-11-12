@@ -1,0 +1,24 @@
+<h1>Saídas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Estoque</th>
+      <th>Quantidade</th>
+      <th>Data</th>
+      <th>Comentário</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exits.each do |exit| %>
+      <tr>
+        <td><%= exit.stock %></td>
+        <td><%= exit.amount %></td>
+        <td><%= exit.date %></td>
+        <td><%= exit.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

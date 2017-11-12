@@ -5,11 +5,25 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = Stock.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "stocks",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "stocks",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /stocks/new

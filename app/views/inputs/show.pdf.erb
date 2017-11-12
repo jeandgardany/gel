@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Laboratorio:</strong>
   <%= @input.laboratory.name %>
@@ -39,6 +37,3 @@
   <strong>Data:</strong>
   <%= @input.date %>
 </p>
-<%= link_to 'Imprimir', input_path(format: :pdf), class: "btn btn-danger btn-sm" %>
-<%= link_to 'Editar', edit_input_path(@input), class: "btn btn-primary btn-sm" %> |
-<%= link_to 'Voltar', stocks_path, class: "btn btn-primary btn-sm" %>

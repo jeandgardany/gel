@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Exits</h1>
+<h1>Saídas</h1>
 
 <table>
   <thead>
@@ -20,14 +20,14 @@
         <td><%= exit.amount %></td>
         <td><%= exit.date %></td>
         <td><%= exit.comment %></td>
-        <td><%= link_to 'Mostrar', exit %></td>
-        <td><%= link_to 'Editar', edit_exit_path(exit) %></td>
-        <td><%= link_to 'Apagar', exit, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= link_to 'Mostrar', exit, class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_exit_path(exit), class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to 'Apagar', exit, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-primary btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'Nova Saída', new_exit_path %>
+<%= link_to 'Imprimir', exits_path(format: :pdf), class: "btn btn-danger, btn-sm" %>
+<%= link_to 'Nova Saída', new_exit_path, class: "btn btn-primary btn-sm" %>

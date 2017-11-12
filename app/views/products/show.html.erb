@@ -12,7 +12,7 @@
 
 <p>
   <strong>Categoria:</strong>
-  <%= @product.category %>
+  <%= @product.category.name %>
 </p>
 
 <p>
@@ -25,5 +25,5 @@
   <%= @product.provider %>
 </p>
 
-<%= link_to 'Editar', edit_product_path(@product) %> |
-<%= link_to 'Voltar', new_input_path %>
+<%= link_to 'Editar', edit_product_path(@product), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Voltar', new_input_path, class: "btn btn-primary btn-sm" %>

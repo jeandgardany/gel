@@ -5,11 +5,25 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "products",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "products",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /products/new
@@ -20,6 +34,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @category_select = Category.all
   end
 
   # POST /products
