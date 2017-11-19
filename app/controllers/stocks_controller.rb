@@ -13,6 +13,23 @@ class StocksController < ApplicationController
       end
     end
   end
+  #GET /stocks/entrada
+  def entrada
+   @stocks = Stock.all
+  end
+
+  def buscar
+    @laboratory_select = Laboratory.all
+  end
+
+  def resultado
+    @stocks = Stock.search(params[:query])
+    #respond_with @products
+    respond_to do |format|
+      format.html
+    end
+    
+  end
 
   # GET /stocks/1
   # GET /stocks/1.json
@@ -27,12 +44,24 @@ class StocksController < ApplicationController
   end
 
   # GET /stocks/new
-  def new
+  def new 
     @stock = Stock.new
+    @stock.build_movement
+    @product_select = Product.all
+    @laboratory_select = Laboratory.all
+    @movement_select = Movement.all
+    @stocks = Stock.search(params[:query])
+    respond_to do |format|
+      format.html
+    end
+
   end
 
   # GET /stocks/1/edit
   def edit
+    @laboratory_select = Laboratory.all
+    @movement_select = Movement.all
+    @product_select = Product.all
   end
 
   # POST /stocks
@@ -83,6 +112,6 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:amount, :laboratory_id, :product_id)
+      params.require(:stock).permit(:laboratory_id, movement_attributes: [:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data])
     end
 end

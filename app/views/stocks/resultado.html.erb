@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Resultado da Pesquisa</h3>
+<table>
+	<thead>
+	    <tr>
+	      <th>Id Estoque</th>
+	      <th>Laboratório</th>
+	      <th>Nome Produto</th>
+	      <th>Categoria</th>
+	      <th>Descrição Produto</th>
+	      <th>Qtd</th>
+	      <th colspan="3"></th>
+	    </tr>
+	  </thead>
+	<tbody>	
+	<% @stocks.each do |stock| %>
+	<tr>
+		<td><%= stock.id %></td>
+		<td><%= stock.laboratory_id %></td>
+		<td><%= stock.movement.product.name %></td>
+		<td><%= stock.movement.product.category.name %></td>
+		<td><%= stock.movement.product.description %></td>
+		<td><%= stock.movement.amount %> Und(s)</td>
+	</tr>
+	<br>
+
+		<% end %>
+	</tbody>
+</table>
+<br>
+
+<%= link_to "Nova Busca", home_index_path %>

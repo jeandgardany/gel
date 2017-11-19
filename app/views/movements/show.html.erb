@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @movement.product.name %>
+</p>
+
+<p>
+  <strong>Qtd:</strong>
+  <%= @movement.amount %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
+  <%= @movement.shelfLife.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Ciclos:</strong>
+  <%= @movement.lifeCycle %>
+</p>
+
+<p>
+  <strong>V.Und:</strong>
+  <%= valor_formatado(@movement.unitaryValue) %>
+</p>
+
+<p>
+  <strong>V.Total:</strong>
+  <%= valor_formatado(@movement.value) %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @movement.data.strftime("%d/%m/%Y") %>
+</p>
+
+<%= link_to 'Editar', edit_movement_path(@movement), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Voltar', movements_path, class: "btn btn-primary btn-sm" %>

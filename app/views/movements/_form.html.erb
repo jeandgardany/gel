@@ -1,0 +1,59 @@
+<%= form_with(model: movement, local: true) do |form| %>
+  <% if movement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movement.errors.count, "error") %> prohibited this movement from being saved:</h2>
+
+      <ul>
+      <% movement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :action, "Ação" %>
+    <%= select("movement", "action", ['Entrada', 'Saida'], {prompt: "Selecione"}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_id, "Produto" %>
+    <%= form.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :movement_product_id %>
+    <%= link_to t('.new', :default => t("Novo Produto")),
+            new_product_path, :class => 'btn btn-success btn-sm' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount, "Quantidade" %>
+    <%= form.number_field :amount, id: :movement_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shelfLife, "Validade" %>
+    <%= form.date_select :shelfLife, id: :movement_shelfLife %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lifeCycle, "Ciclo de Vida" %>
+    <%= form.number_field :lifeCycle, id: :movement_lifeCycle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unitaryValue, "Valor Unitário" %>
+    <%= form.text_field :unitaryValue, id: :movement_unitaryValue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value, "Valor Total" %>
+    <%= form.text_field :value, id: :movement_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data, "Data" %>
+    <%= form.date_select :data, id: :movement_data %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -18,31 +18,6 @@ ActiveRecord::Schema.define(version: 20171110023605) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "exits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "stock_id"
-    t.integer "amount", null: false
-    t.date "date"
-    t.string "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["stock_id"], name: "index_exits_on_stock_id"
-  end
-
-  create_table "inputs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "laboratory_id"
-    t.bigint "product_id"
-    t.date "shelfLife"
-    t.integer "lifeCycle"
-    t.integer "amount", null: false
-    t.decimal "unitaryValue", precision: 10
-    t.decimal "value", precision: 10
-    t.date "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["laboratory_id"], name: "index_inputs_on_laboratory_id"
-    t.index ["product_id"], name: "index_inputs_on_product_id"
-  end
-
   create_table "laboratories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "code", null: false
     t.string "name", null: false
@@ -52,21 +27,20 @@ ActiveRecord::Schema.define(version: 20171110023605) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+  create_table "movements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "action", null: false
+    t.bigint "product_id"
+    t.integer "amount", null: false
+    t.date "shelfLife"
+    t.integer "lifeCycle"
+    t.decimal "unitaryValue", precision: 10, null: false
+    t.decimal "value", precision: 10, null: false
+    t.date "data", null: false
+    t.bigint "stock_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_models_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+    t.index ["product_id"], name: "index_movements_on_product_id"
+    t.index ["stock_id"], name: "index_movements_on_stock_id"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,13 +55,10 @@ ActiveRecord::Schema.define(version: 20171110023605) do
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "amount", null: false
     t.bigint "laboratory_id"
-    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["laboratory_id"], name: "index_stocks_on_laboratory_id"
-    t.index ["product_id"], name: "index_stocks_on_product_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -107,10 +78,8 @@ ActiveRecord::Schema.define(version: 20171110023605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "exits", "stocks"
-  add_foreign_key "inputs", "laboratories"
-  add_foreign_key "inputs", "products"
+  add_foreign_key "movements", "products"
+  add_foreign_key "movements", "stocks"
   add_foreign_key "products", "categories"
   add_foreign_key "stocks", "laboratories"
-  add_foreign_key "stocks", "products"
 end

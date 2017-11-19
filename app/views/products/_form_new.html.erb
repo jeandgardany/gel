@@ -23,11 +23,11 @@
 
   <div class="field">
     <%= form.label :category_id, "Categoria" %>
-    <%= form.collection_select :category_id, @category_select, :id, :name, prompt: "Selecione", id: :product_category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Selecione", id: :product_category_id %>
     <%= link_to t('.new', :default => t("Nova Categoria")),
             new_category_path, :class => 'btn btn-success btn-sm' %>
   </div>
-
+  
   <div class="field">
     <%= form.label :description, "Descrição" %>
     <%= form.text_field :description, id: :product_description %>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+	<tbody>	
+	<% @stocks.each do |stock| %>
+	<tr>
+		<td><%= stock.id %></td>
+		<td><%= stock.laboratory.name %></td>
+		<td><%= stock.movement.product.name %></td>
+		<td><%= stock.movement.product.category.name %></td>
+		<td><%= stock.movement.product.description %></td>
+		<td><%= stock.movement.amount %> Und(s)</td>
+	</tr>
+	<br>
+
+		<% end %>
+	</tbody>
+</table>
+<br>
+
+<%= link_to "Nova Busca", stock_buscar_path %>

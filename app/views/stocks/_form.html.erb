@@ -12,21 +12,58 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :amount, "Quantidade" %>
-    <%= form.number_field :amount, id: :stock_amount %>
-  </div>
-
-  <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
-    <%= form.text_field :laboratory_id, id: :stock_laboratory_id %>
+    <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
+  </div>
+  <%= form.fields_for :movement do |ff | %>
+
+  <div class="field">
+    <%= ff.label :action, "Ação" %>
+    <%= ff.select(:action, ['Entrada', 'Saida'], prompt: "Selecione") %>
   </div>
 
   <div class="field">
-    <%= form.label :product_id, "Produto" %>
-    <%= form.text_field :product_id, id: :stock_product_id %>
+    <%= ff.label :product_id, "Produto" %>
+    <%= ff.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :movement_product_id %>
+    <%= link_to t('.new', :default => t("Novo Produto")),
+            new_product_path, :class => 'btn btn-success btn-sm' %>
   </div>
+
+  <div class="field">
+    <%= ff.label :amount, "Quantidade" %>
+    <%= ff.number_field :amount, id: :movement_amount %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :shelfLife, "Validade" %>
+    <%= ff.date_select :shelfLife, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :movement_shelfLife %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :lifeCycle, "Ciclo de Vida" %>
+    <%= ff.number_field :lifeCycle, id: :movement_lifeCycle %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :unitaryValue, "Valor Unitário" %>
+    <%= ff.text_field :unitaryValue, id: :movement_unitaryValue %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :value, "Valor Total" %>
+    <%= ff.text_field :value, id: :movement_value %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :data, "Data" %>
+    <%= ff.date_select :data, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :movement_data %>
+  </div>
+
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
+

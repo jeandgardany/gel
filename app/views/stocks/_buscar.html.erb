@@ -1,0 +1,4 @@
+ <%= form_tag stock_resultado_path, :method => 'post' do %>
+ <%= text_field_tag :query, params[:query] %>
+ <%= submit_tag ".:Laboratório:.", :laboratory_id => nil %>
+ <% end %>

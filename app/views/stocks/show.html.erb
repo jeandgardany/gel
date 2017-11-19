@@ -1,18 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Quantidade:</strong>
-  <%= @stock.amount %>
+  <strong>Ação:</strong>
+  <%= @stock.movement.action %>
 </p>
 
 <p>
   <strong>Laboratorio:</strong>
-  <%= @stock.laboratory.name %>
+  <%= @stock.laboratory_id %>
 </p>
 
 <p>
-  <strong>Produto:</strong>
-  <%= @stock.product.name %>
+  <strong>Product:</strong>
+  <%= @stock.movement.product.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @stock.movement.amount %>
+</p>
+
+<p>
+  <strong>Shelflife:</strong>
+  <%= @stock.movement.shelfLife.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Lifecycle:</strong>
+  <%= @stock.movement.lifeCycle %>
+</p>
+
+<p>
+  <strong>Unitaryvalue:</strong>
+  <%= valor_formatado(@stock.movement.unitaryValue) %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= valor_formatado(@stock.movement.value) %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @stock.movement.data.strftime("%d/%m/%Y") %>
 </p>
 
 <%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> |

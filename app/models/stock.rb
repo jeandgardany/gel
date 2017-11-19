@@ -1,6 +1,13 @@
 class Stock < ApplicationRecord
   has_many :laboratories
-  has_many :products
+  has_one :movement
   
-  validates :amount, :laboratory_id, :product_id, presence: true
+  validates :laboratory_id, presence: true
+  accepts_nested_attributes_for :laboratories, :movement
+
+   def self.search(query)
+
+  	where("laboratory_id LIKE :q", :q => "%#{query}%")
+  	
+  end
 end

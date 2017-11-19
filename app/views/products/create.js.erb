@@ -1,0 +1,17 @@
+var qtdErrors =  <%= @product.errors.count %>;
+
+if (qtdErrors > 0){
+	$(".message").html("<h1>Ocorreu um erro!</h1>");
+} else {
+	$(".message").html("<h1>Cadastrado com Sucesso!!</h1>");
+	$("#product_code").val("");
+	$("#product_name").val("");
+	$("#product_category_id").val("");
+	$("#product_description").val("");
+	$("#product_provider").val("");
+
+}
+
+SetTimeout(function(){
+	$(".message h1").remove();
+}, 4000);

@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Entradas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Produto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Qtd &nbsp;&nbsp;</th>
+      <th>Validade &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Ciclos &nbsp;&nbsp;</th>
+      <th>V.Und &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>V.Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Data</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movements.each do |movement| %>
+      <tr>
+        <td><%= movement.action %></td>
+        <td><%= movement.product.name %></td>
+        <td><%= movement.amount %></td>
+        <td><%= movement.shelfLife.strftime("%d/%m/%Y") %></td>
+        <td><%= movement.lifeCycle %></td>
+        <td><%= valor_formatado(movement.unitaryValue) %></td>
+        <td><%= valor_formatado(movement.value) %></td>
+        <td><%= movement.data.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Mostrar', movement, class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_movement_path(movement), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Apagar', movement, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+    </table>
+  </tbody>
+</table><br>
+<!--%= Movement.sum(:value, :conditions => {:action => ["Entrada"]}) %-->
+    <table>
+      <thead>
+        <tr>
+          <th>Qtd Entradas de Produtos &nbsp;&nbsp;&nbsp;</th>
+          <th>Valor Total de Entradas &nbsp;&nbsp;&nbsp;</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= Movement.where(action: 'Entrada').sum(:amount) %></td>
+        <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value)) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<br>
+
+<%= link_to 'Imprimir', movement_inputs_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+<%= link_to 'Nova Movimentação', movements_path, class: "btn btn-primary btn-sm" %>
+
