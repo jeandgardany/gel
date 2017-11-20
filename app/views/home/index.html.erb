@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
+
 <div class="center">
 <h2>GENIS - Gestão de Estoque NIS</h2>
 </div>
-<div class="center"><%= render "/products/buscar" %></div>
-<div class="center"><%= render "/stocks/buscar" %></div>
+<div class="center">
+<%= form_tag(products_path, method: :get) do %>
+<%= text_field_tag 'search', nil, placeholder: 'Pesquisar produto...' %>
+<%= submit_tag "Produtos" %>
+<% end %>
+</div>

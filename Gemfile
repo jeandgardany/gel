@@ -20,6 +20,8 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Formulario de pesquisa
+gem 'ransack'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 # Use Uglifier as compressor for JavaScript assets

@@ -1,11 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+<%= f.label :laboratory_id_eq, "Laboratório" %>
+<%= f.search_field :laboratory_id_eq %>
+<%= f.submit %>
+<% end %>
 <h1>Estoque</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Lab &nbsp;&nbsp;</th>
+      <th><%= sort_link(@q, :laboratory_id, "Lab") %>&nbsp;&nbsp;</th>
       <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Produto</th>
       <th>Quantidade &nbsp;&nbsp;</th>

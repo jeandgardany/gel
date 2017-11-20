@@ -7,7 +7,7 @@ class Product < ApplicationRecord
 
   def self.search(query)
 
-  	where("name LIKE :q", :q => "%#{query}%")
+  	where("name like ?", "%#{query}%")
   	
   end
 end

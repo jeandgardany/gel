@@ -4,7 +4,9 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    @movements = Movement.all
+    @q = Movement.ransack(params[:q])
+    @movements = @q.result(distinct: true)
+    #@movements = Movement.all
     respond_to do |format|
       format.html
       format.pdf do
@@ -15,7 +17,7 @@ class MovementsController < ApplicationController
   end
 
   def inputs
-    @movements = Movement.inputs
+    @movements = Movement.inputs.order(product_id: :asc)
     respond_to do |format|
       format.html
       format.pdf do
@@ -26,7 +28,7 @@ class MovementsController < ApplicationController
   end
 
   def exits
-    @movements = Movement.exits
+    @movements = Movement.exits.order(product_id: :asc)
     respond_to do |format|
       format.html
       format.pdf do

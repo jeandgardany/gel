@@ -1,12 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<%= search_form_for @q do |f| %>
+<%= f.label :action_cont, "Ação" %>
+<%= f.search_field :action_cont %>
+<%= f.label :product_name_cont, "Produto" %>
+<%= f.search_field :product_name_cont %>
+<%= f.submit %>
+<% end %>
+
 <h1>Movimentos</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>Produto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th><%= sort_link(@q, :action, "Ação", default_order: :asc) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th><%= sort_link(@q, :product_id, "Produto") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Qtd &nbsp;&nbsp;</th>
       <th>Validade &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Ciclos &nbsp;&nbsp;</th>
@@ -20,6 +28,7 @@
   <tbody>
     <% @movements.each do |movement| %>
       <tr>
+        <td><%= movement.stock_id %></td>
         <td><%= movement.action %></td>
         <td><%= movement.product.name %></td>
         <td><%= movement.amount %></td>
