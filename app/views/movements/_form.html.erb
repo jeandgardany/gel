@@ -45,7 +45,7 @@
 
   <div class="field">
     <%= form.label :value, "Valor Total" %>
-    <%= form.text_field :value, id: :movement_value %>
+    <%= form.hidden_field :value, :value => (:unitaryValue)%>
   </div>
 
   <div class="field">

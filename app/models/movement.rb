@@ -8,10 +8,10 @@ class Movement < ApplicationRecord
   scope :exits, -> { where action: 'Saida' }
 
  def stock_laboratory_name
-    if self.stock.laboratory.blank?
+    if self.movement.stock.laboratory.blank?
       "Sem Cadastro"
     else
-      self.stock.laboratory.name
+      self.movement.stock.laboratory.name
     end
  end
 

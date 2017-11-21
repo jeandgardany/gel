@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :movements
+    resources :stocks
   get '/movement/inputs' => 'movements#inputs'
   get '/movement/exits' => 'movements#exits'
   get '/movement/currentInventory' => 'movements#currentInventory'

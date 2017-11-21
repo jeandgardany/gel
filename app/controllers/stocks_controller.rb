@@ -4,7 +4,7 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    #@movements = Movement.joins(:stock).order(action: :asc)
+    @movements = Movement.all
     @q = Stock.ransack(params[:q])
     @stocks = @q.result(distinct: true).includes(:movement)
     respond_to do |format|

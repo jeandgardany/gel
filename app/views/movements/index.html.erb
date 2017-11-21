@@ -13,6 +13,7 @@
 <table>
   <thead>
     <tr>
+      <th>Stock_id &nbsp;&nbsp;</th>
       <th><%= sort_link(@q, :action, "Ação", default_order: :asc) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th><%= sort_link(@q, :product_id, "Produto") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Qtd &nbsp;&nbsp;</th>
@@ -35,8 +36,9 @@
         <td><%= movement.shelfLife.strftime("%d/%m/%Y") %></td>
         <td><%= movement.lifeCycle %></td>
         <td><%= valor_formatado(movement.unitaryValue) %></td>
-        <td><%= valor_formatado(movement.value) %></td>
+        <td><%= valor_formatado(movement.unitaryValue * movement.amount) %></td>
         <td><%= movement.data.strftime("%d/%m/%Y") %></td>
+        <!--%= movement.inject(0){|sum, amount| sum + movement.amount} %-->
         <td><%= link_to 'Mostrar', movement, class: "btn btn-success btn-sm" %></td>
         <td><%= link_to 'Editar', edit_movement_path(movement), class: "btn btn-warning btn-sm" %></td>
         <td><%= link_to 'Apagar', movement, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
