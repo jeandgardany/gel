@@ -24,11 +24,11 @@
         <td><%= stock.movement.action %></td>
         <td><%= stock.movement.product.name %></td>
         <td><%= stock.movement.amount %></td>
-        <td><%= stock.movement.shelfLife %></td>
+        <td><%= stock.movement.shelfLife.strftime("%d/%m/%Y") %></td>
         <td><%= stock.movement.lifeCycle %></td>
         <td><%= valor_formatado(stock.movement.unitaryValue) %></td>
         <td><%= valor_formatado(stock.movement.value) %></td>
-        <td><%= stock.movement.data %></td>
+        <td><%= stock.movement.data.strftime("%d/%m/%Y") %></td>
       </tr>
     <% end %>
   </tbody>

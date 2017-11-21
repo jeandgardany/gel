@@ -19,4 +19,8 @@ class Stock < ApplicationRecord
     end
   end
 
+  def self.hired_since ( date )
+     where( ' start_date> =? ' , date)
+  end
+
 end
