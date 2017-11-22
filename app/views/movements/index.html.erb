@@ -3,6 +3,7 @@
 <%= search_form_for @q do |f| %>
 <%= f.label :action_cont, "Ação" %>
 <%= f.search_field :action_cont %>
+<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.label :product_name_cont, "Produto" %>
 <%= f.search_field :product_name_cont %>
 <%= f.submit %>

@@ -4,9 +4,9 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @movements = Movement.all
-    @q = Stock.ransack(params[:q])
-    @stocks = @q.result(distinct: true).includes(:movement)
+    #@movements = Movement.all
+    @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(18)
     respond_to do |format|
       format.html
       format.pdf do

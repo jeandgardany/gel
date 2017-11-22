@@ -2,21 +2,13 @@
 <%= search_form_for(@q, format: :pdf) do |f| %>
 <!--%= f.label :laboratory_id_eq, "Laboratório:" %-->
 <%= f.search_field :laboratory_id_eq,placeholder: 'Pesquisar Laboratório...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
-<!--%= f.label :action_cont, "Ação:" %-->
 <%= f.search_field :movement_action_cont, placeholder: 'Pesquisar Ação...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
-<!--%= f.label :product_name_cont, "Produto:" %-->
 <%= f.search_field :movement_product_name_cont, placeholder: 'Pesquisar Produto...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.search_field :movement_amount_lteq, placeholder: 'Pesquisar Qtd menor/igual...' %>
 <%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.search_field :movement_data_gteq, placeholder: 'Pesquisar Data Inicial...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.search_field :movement_data_lteq, placeholder: 'Pesquisar Data Final...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.search_field :movement_shelfLife_gteq, placeholder: 'Vencimento Inicial...' %>
-<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
 <%= f.search_field :movement_shelfLife_lteq, placeholder: 'Vencimento Final...' %>
 <%= f.submit %>
 <% end %>
@@ -79,6 +71,7 @@
         <td><%= Movement.where(action: 'Entrada').sum(:amount) - Movement.where(action: 'Saida').sum(:amount) %></td>
         <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value) - Movement.where(action: 'Saida').sum(:value)) %></td>
       </tr>
+      <%= paginate @stocks %>
     </tbody>
   </table>
 

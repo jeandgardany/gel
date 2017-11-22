@@ -4,7 +4,7 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    @q = Movement.ransack(params[:q])
+    @q = Movement.ransack(params[:q].try(:merge, m: params[:combinator]))
     @movements = @q.result(distinct: true)
     #@movements = Movement.all
     respond_to do |format|
