@@ -28,6 +28,16 @@
     <%= form.number_field :amount, id: :movement_amount %>
   </div>
 
+  <div id='patrimonies'>
+    <%= form.fields_for :patrimonies do |patrimonies_fields | %>
+      <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
+    <% end %>
+
+    <div class="field">
+      <%= link_to_add_association('Adicionar Etiqueta', form, :patrimonies, :class => 'btn btn-primary btn-sm') %>
+    </div>
+  </div>
+
   <div class="field">
     <%= form.label :shelfLife, "Validade" %>
     <%= form.date_select :shelfLife, id: :movement_shelfLife %>
@@ -45,7 +55,7 @@
 
   <div class="field">
     <%= form.label :value, "Valor Total" %>
-    <%= form.hidden_field :value, :value => (:unitaryValue)%>
+    <%= form.text_field :value, id: :movement_value %>
   </div>
 
   <div class="field">

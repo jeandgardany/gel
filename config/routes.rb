@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :patrimonies
   resources :movements
     resources :stocks
   get '/movement/inputs' => 'movements#inputs'

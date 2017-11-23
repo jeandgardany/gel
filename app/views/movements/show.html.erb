@@ -11,6 +11,13 @@
 </p>
 
 <p>
+  <strong>Etiquetas:</strong>
+  <% @movement.patrimonies.each do |pat| %>
+  <%= pat.tag %>
+  <% end %>
+</p>
+
+<p>
   <strong>Validade:</strong>
   <%= @movement.shelfLife.strftime("%d/%m/%Y") %>
 </p>

@@ -59,6 +59,8 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
+    #@movement.build_patrimony
+    @patrimonies = Patrimony.all
     @product_select = Product.all
   end
 
@@ -115,6 +117,6 @@ class MovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movement_params
-      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id)
+      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id, patrimonies_attributes: [:id, :tag, :_destroy])
     end
 end

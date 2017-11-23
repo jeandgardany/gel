@@ -1,0 +1,27 @@
+<%= form_with(model: patrimony, local: true) do |form| %>
+  <% if patrimony.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patrimony.errors.count, "error") %> prohibited this patrimony from being saved:</h2>
+
+      <ul>
+      <% patrimony.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tag %>
+    <%= form.text_field :tag, id: :patrimony_tag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_id %>
+    <%= form.text_field :movement_id, id: :patrimony_movement_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

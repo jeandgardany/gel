@@ -1,8 +1,10 @@
 class Movement < ApplicationRecord
   belongs_to :product
   has_many :stocks
+  has_many :patrimonies
 
   accepts_nested_attributes_for :product, :stocks
+  accepts_nested_attributes_for :patrimonies, reject_if: :all_blank, allow_destroy: true
 
   scope :inputs, -> { where action: 'Entrada' }
   scope :exits, -> { where action: 'Saida' }

@@ -49,9 +49,11 @@ class StocksController < ApplicationController
   def new 
     @stock = Stock.new
     @stock.build_movement
+    @patrimonies = Patrimony.all
     @product_select = Product.all
     @laboratory_select = Laboratory.all
     @movement_select = Movement.all
+    @patrimonies = Patrimony.all
     @stocks = Stock.search(params[:query])
     respond_to do |format|
       format.html
@@ -64,6 +66,7 @@ class StocksController < ApplicationController
     @laboratory_select = Laboratory.all
     @movement_select = Movement.all
     @product_select = Product.all
+    @patrimonies = Patrimony.all
   end
 
   # POST /stocks
@@ -114,6 +117,6 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:laboratory_id, movement_attributes: [:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data])
+      params.require(:stock).permit(:laboratory_id, movement_attributes: [:id, :action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, patrimonies_attributes: [:id, :tag, :_destroy]])
     end
 end

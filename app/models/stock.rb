@@ -1,9 +1,11 @@
 class Stock < ApplicationRecord
   belongs_to :laboratory
   has_one :movement
+  #has_many :patrimonies
   
   validates :laboratory_id, presence: true
-  accepts_nested_attributes_for :laboratory, :movement
+  accepts_nested_attributes_for :laboratory, :movement, reject_if: :all_blank, allow_destroy: true
+  #accepts_nested_attributes_for :patrimonies, reject_if: :all_blank, allow_destroy: true
 
   def self.search(query)
 

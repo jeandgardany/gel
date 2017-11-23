@@ -6,37 +6,44 @@
 </p>
 
 <p>
-  <strong>Laboratorio:</strong>
+  <strong>Laboratório:</strong>
   <%= @stock.laboratory_id %>
 </p>
 
 <p>
-  <strong>Product:</strong>
+  <strong>Produto:</strong>
   <%= @stock.movement.product.name %>
 </p>
 
 <p>
-  <strong>Amount:</strong>
+  <strong>Quantidade:</strong>
   <%= @stock.movement.amount %>
 </p>
 
 <p>
-  <strong>Shelflife:</strong>
+  <strong>Etiquetas:</strong>
+  <% @stock.movement.patrimonies.each do |pat| %>
+  <%= pat.tag %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
   <%= @stock.movement.shelfLife.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
-  <strong>Lifecycle:</strong>
+  <strong>Ciclos:</strong>
   <%= @stock.movement.lifeCycle %>
 </p>
 
 <p>
-  <strong>Unitaryvalue:</strong>
+  <strong>Valor Und:</strong>
   <%= valor_formatado(@stock.movement.unitaryValue) %>
 </p>
 
 <p>
-  <strong>Value:</strong>
+  <strong>Valor Total:</strong>
   <%= valor_formatado(@stock.movement.value) %>
 </p>
 
