@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Tag:</strong>
+  <strong>Etiqueta:</strong>
   <%= @patrimony.tag %>
 </p>
 
 <p>
-  <strong>Movement:</strong>
-  <%= @patrimony.movement %>
+  <strong>Produto:</strong>
+  <%= @patrimony.movement.product.name %>
 </p>
 
-<%= link_to 'Edit', edit_patrimony_path(@patrimony) %> |
-<%= link_to 'Back', patrimonies_path %>
+<%= link_to 'Editar', edit_patrimony_path(@patrimony), :class => 'btn btn-primary btn-sm' %> |
+<%= link_to 'Voltar', patrimonies_path, :class => 'btn btn-primary btn-sm' %>

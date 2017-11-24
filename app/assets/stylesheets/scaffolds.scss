@@ -1,3 +1,6 @@
+div.alwaysbreak { page-break-before: always; }
+div.nobreak:before { clear:both; }
+div.nobreak{ page-break-inside: avoid; }
 body {
   background-color: #fff;
   color: #333;

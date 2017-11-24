@@ -6,15 +6,27 @@ class StocksController < ApplicationController
   def index
     #@movements = Movement.all
     @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(18)
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(19)
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "stocks",
+        render pdf: "stocks/index_pdf",
         layout: 'pdf'
       end
     end
   end
+
+def index_pdf
+  @stocks = Stock.all
+    @movements = Movement.all
+    respond_to do |format|
+      format.pdf do
+        render pdf: "stocks/index_pdf",
+        layout: 'pdf'
+    end
+  end
+end
+
   #GET /stocks/entrada
   def entrada
    @stocks = Stock.all

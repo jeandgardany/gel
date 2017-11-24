@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'reports/index'
   get '/input/buscar' => 'inputs#buscar'
   post '/input/resultado' => 'inputs#resultado'
-  resources :stocks
+  resources :stocks  
+  get '/stock/index_pdf' => 'stocks#index_pdf'
   get '/stock/buscar' => 'stocks#buscar'
   post '/stock/resultado' => 'stocks#resultado'
   get '/stock/entrada' => 'stocks#entrada'

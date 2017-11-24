@@ -13,16 +13,16 @@
 <%= f.submit %>
 <% end %>
 <h1>Estoque</h1>
-
 <table>
   <thead>
     <tr>
       <th><%= sort_link(@q, :laboratory_id, "Lab") %>&nbsp;&nbsp;</th>
-      <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Produto</th>
       <th>Qtd &nbsp;&nbsp;</th>
+      <th>Ctg </th>
       <th>Validade</th>
-      <th>Ciclos &nbsp;&nbsp;</th>
+      <th>Ciclos &nbsp;</th>
       <th>Valor Und</th>
       <th>Valor Total</th>
       <th>Data</th> 
@@ -36,6 +36,7 @@
         <td><%= stock.laboratory_id %></td>
         <td><%= stock.movement.action %></td>
         <td><%= stock.movement.product.name %></td>
+        <td><%= format_category(stock.movement.product.category.name) %></td>
         <td><%= stock.movement.amount %></td>
         <td><%= stock.movement.shelfLife.strftime("%d/%m/%Y") %></td>
         <td><%= stock.movement.lifeCycle %></td>
@@ -72,11 +73,13 @@
         <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value) - Movement.where(action: 'Saida').sum(:value)) %></td>
       </tr>
       <%= paginate @stocks %>
+
     </tbody>
   </table>
+  <div><%= @stocks.count %></div>
 
 <br>
-<%= link_to 'Imprimir', stocks_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+<%= link_to 'Imprimir', stock_index_pdf_path(format: :pdf), class: "btn btn-danger btn-sm" %>
 
 <%= link_to t('.new', :default => t("Nova Movimentação")),
             new_stock_path, :class => 'btn btn-primary btn-sm' %>

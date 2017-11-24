@@ -4,7 +4,19 @@ class PatrimoniesController < ApplicationController
   # GET /patrimonies
   # GET /patrimonies.json
   def index
-    @patrimonies = Patrimony.all
+    @q = Patrimony.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @patrimonies = @q.result(distinct: true).includes(:movement).page(params[:page]).per(22)
+    @stocks = Stock.all
+    @stock_movement = Movement.all
+    @movements = Movement.all
+    #@patrimonies = Patrimony.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "patrimonies",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /patrimonies/1
@@ -69,6 +81,6 @@ class PatrimoniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patrimony_params
-      params.require(:patrimony).permit(:tag, :movement_id)
+      params.require(:patrimony).permit(:tag, :movement_id, movement_attributes: [:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data])
     end
 end

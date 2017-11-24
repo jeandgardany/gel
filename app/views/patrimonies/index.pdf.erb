@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<font size="5"><strong>.:: Etiqueta de Patrimônio ::.</strong></font>
+<font size="3">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+<font size="3">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+<table>
+  <thead>
+    <tr>
+      <th>Etiqueta</th>
+      <th>Produto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patrimonies.each do |patrimony| %>
+      <tr>
+        <td><%= patrimony.tag %></td>
+        <td><%= patrimony.movement.product.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
