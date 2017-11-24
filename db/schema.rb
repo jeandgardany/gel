@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123114158) do
+ActiveRecord::Schema.define(version: 20171124111034) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "code", null: false
+    t.string "name", null: false
+    t.bigint "office_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["office_id"], name: "index_employees_on_office_id"
   end
 
   create_table "laboratories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -43,8 +52,14 @@ ActiveRecord::Schema.define(version: 20171123114158) do
     t.index ["stock_id"], name: "index_movements_on_stock_id"
   end
 
+  create_table "offices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "patrimonies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "tag"
+    t.string "tag", null: false
     t.bigint "movement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,6 +75,16 @@ ActiveRecord::Schema.define(version: 20171123114158) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "solicitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "description", null: false
+    t.bigint "employee_id"
+    t.bigint "movement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_solicitations_on_employee_id"
+    t.index ["movement_id"], name: "index_solicitations_on_movement_id"
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,9 +111,12 @@ ActiveRecord::Schema.define(version: 20171123114158) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "employees", "offices"
   add_foreign_key "movements", "products"
   add_foreign_key "movements", "stocks"
   add_foreign_key "patrimonies", "movements"
   add_foreign_key "products", "categories"
+  add_foreign_key "solicitations", "employees"
+  add_foreign_key "solicitations", "movements"
   add_foreign_key "stocks", "laboratories"
 end

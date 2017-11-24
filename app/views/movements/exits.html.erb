@@ -7,6 +7,7 @@
     <tr>
       <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Produto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Ctg &nbsp;&nbsp;</th>
       <th>Qtd &nbsp;&nbsp;</th>
       <th>Validade &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Ciclos &nbsp;&nbsp;</th>
@@ -22,6 +23,7 @@
       <tr>
         <td><%= movement.action %></td>
         <td><%= movement.product.name %></td>
+        <td><%= format_category(movement.product.category.name) %></td>
         <td><%= movement.amount %></td>
         <td><%= movement.shelfLife.strftime("%d/%m/%Y") %></td>
         <td><%= movement.lifeCycle %></td>

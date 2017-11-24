@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @employee.name %>
+</p>
+
+<%= link_to 'Editar', edit_employee_path(@employee) %> |
+<%= link_to 'Voltar', employees_path %>

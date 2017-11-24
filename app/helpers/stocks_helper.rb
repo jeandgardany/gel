@@ -7,4 +7,12 @@ module StocksHelper
 		end
 		
 	end
+	def format_employee_name
+		if self.employee.blank?
+      		"Sem Cadastro"
+		else
+			self.employee.name
+		end
+		
+	end
 end

@@ -61,12 +61,16 @@ class MovementsController < ApplicationController
     @movement = Movement.new
     #@movement.build_patrimony
     @patrimonies = Patrimony.all
+    @solicitations = Solicitation.all
+    @employee_select = Employee.all
     @product_select = Product.all
+
   end
 
   # GET /movements/1/edit
   def edit
     @product_select = Product.all
+    @employee_select = Employee.all
   end
 
   # POST /movements
@@ -117,6 +121,6 @@ class MovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movement_params
-      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id, patrimonies_attributes: [:id, :tag, :_destroy])
+      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id, patrimonies_attributes: [:id, :tag, :_destroy], solicitations_attributes: [:id, :description, :employee_id, :_destroy, employee_attibutes:[:id, :code, :name, :_destroy, office_attributes: [:id, :name]]])
     end
 end

@@ -22,6 +22,16 @@
     <%= ff.select(:action, ['Entrada', 'Saida'], prompt: "Selecione") %>
   </div>
 
+  <div id='solicitations'>
+    <%= ff.fields_for :solicitations do |solicitations_fields | %>
+    <%= render partial: "solicitation_fields", locals: { f: solicitations_fields } %>
+    <% end %>
+  </div>
+
+  <div class="field">
+      <%= link_to_add_association('Adicionar Solicitação', ff, :solicitations, :class => 'btn btn-primary btn-sm') %>
+  </div>
+
   <div class="field">
     <%= ff.label :product_id, "Produto" %>
     <%= ff.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :movement_product_id %>

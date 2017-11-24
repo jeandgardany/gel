@@ -16,6 +16,16 @@
     <%= select("movement", "action", ['Entrada', 'Saida'], {prompt: "Selecione"}) %>
   </div>
 
+  <div id='solicitations'>
+    <%= form.fields_for :solicitations do |solicitations_fields | %>
+    <%= render partial: "solicitation_fields", locals: { f: solicitations_fields } %>
+    <% end %>
+  </div>
+
+  <div class="field">
+      <%= link_to_add_association('Adicionar Solicitação', form, :solicitations, :class => 'btn btn-primary btn-sm') %>
+  </div>
+
   <div class="field">
     <%= form.label :product_id, "Produto" %>
     <%= form.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :movement_product_id %>
@@ -30,7 +40,7 @@
 
   <div id='patrimonies'>
     <%= form.fields_for :patrimonies do |patrimonies_fields | %>
-      <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
+    <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
     <% end %>
 
     <div class="field">

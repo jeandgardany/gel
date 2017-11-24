@@ -11,6 +11,14 @@
 </p>
 
 <p>
+  <strong>Solicitante:</strong>
+  <% @stock.movement.solicitations.each do |sol| %>
+  <%= "Cod: #{sol.employee.code} Nome: #{sol.employee.name}" %><br>
+  <%= "Descrição: #{sol.description}" %>
+  <% end %>
+</p>
+
+<p>
   <strong>Produto:</strong>
   <%= @stock.movement.product.name %>
 </p>
@@ -54,3 +62,4 @@
 
 <%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> |
 <%= link_to 'Voltar', stocks_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Imprimir', stock_path(format: :pdf), class: "btn btn-danger btn-sm" %>

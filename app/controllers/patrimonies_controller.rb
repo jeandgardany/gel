@@ -5,7 +5,7 @@ class PatrimoniesController < ApplicationController
   # GET /patrimonies.json
   def index
     @q = Patrimony.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @patrimonies = @q.result(distinct: true).includes(:movement).page(params[:page]).per(22)
+    @patrimonies = @q.result(distinct: true).includes(:movement).page(params[:page]).per(22).order('tag DESC')
     @stocks = Stock.all
     @stock_movement = Movement.all
     @movements = Movement.all

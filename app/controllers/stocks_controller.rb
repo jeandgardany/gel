@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :edit, :update, :destroy]
+  before_action :set_stock, only: [:show, :show_pdf, :edit, :update, :destroy]
 
   # GET /stocks
   # GET /stocks.json
@@ -18,11 +18,11 @@ class StocksController < ApplicationController
 
 def index_pdf
   @stocks = Stock.all
-    @movements = Movement.all
-    respond_to do |format|
-      format.pdf do
-        render pdf: "stocks/index_pdf",
-        layout: 'pdf'
+  @movements = Movement.all
+  respond_to do |format|
+    format.pdf do
+      render pdf: "stocks/index_pdf",
+      layout: 'pdf'
     end
   end
 end
@@ -48,10 +48,12 @@ end
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    @stocks = Stock.all
+    @movements = Movement.all
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "stocks",
+        render pdf: "show",
         layout: 'pdf'
       end
     end
@@ -66,6 +68,7 @@ end
     @laboratory_select = Laboratory.all
     @movement_select = Movement.all
     @patrimonies = Patrimony.all
+    @employee_select = Employee.all
     @stocks = Stock.search(params[:query])
     respond_to do |format|
       format.html
@@ -79,6 +82,7 @@ end
     @movement_select = Movement.all
     @product_select = Product.all
     @patrimonies = Patrimony.all
+    @employee_select = Employee.all
   end
 
   # POST /stocks
@@ -129,6 +133,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:laboratory_id, movement_attributes: [:id, :action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, patrimonies_attributes: [:id, :tag, :_destroy]])
+      params.require(:stock).permit(:laboratory_id, movement_attributes: [:id, :action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, patrimonies_attributes: [:id, :tag, :_destroy], solicitations_attributes: [:id, :employee_id, :description, :_destroy, employee_attibutes: [:id, :code, :name, :office_id, :_destroy, office_attibutes: [:id, :name]]]])
     end
 end

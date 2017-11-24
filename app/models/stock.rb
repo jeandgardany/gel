@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   belongs_to :laboratory
   has_one :movement
+  #has_one :solicitation
   #has_many :patrimonies
   
   validates :laboratory_id, presence: true
@@ -18,6 +19,14 @@ class Stock < ApplicationRecord
       "Sem Cadastro"
     else
       self.laboratory.name
+    end
+  end
+
+  def employee_name
+    if self.employee.blank?
+      "Sem Cadastro"
+    else
+      self.employee.name
     end
   end
 
