@@ -12,9 +12,9 @@
 
 <p>
   <strong>Solicitante:</strong>
-  <% @stock.movement.solicitations.each do |sol| %>
-  <%= "Cod: #{sol.employee.code} Nome: #{sol.employee.name}" %><br>
-  <%= "Descrição: #{sol.description}" %>
+  <% @stock.movement.solicitation do |sol| %>
+  <%= "Cod: #{sol_employee_code} Nome: #{sol_employee_name}" %><br>
+  <%= "Descrição: #{sol_description}" %>
   <% end %>
 </p>
 
@@ -60,6 +60,6 @@
   <%= @stock.movement.data.strftime("%d/%m/%Y") %>
 </p>
 
+<%= link_to 'Imprimir', stock_path(format: :pdf), class: "btn btn-danger btn-sm" %>
 <%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> |
 <%= link_to 'Voltar', stocks_path, class: "btn btn-primary btn-sm" %>
-<%= link_to 'Imprimir', stock_path(format: :pdf), class: "btn btn-danger btn-sm" %>

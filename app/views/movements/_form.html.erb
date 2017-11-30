@@ -16,14 +16,10 @@
     <%= select("movement", "action", ['Entrada', 'Saida'], {prompt: "Selecione"}) %>
   </div>
 
-  <div id='solicitations'>
-    <%= form.fields_for :solicitations do |solicitations_fields | %>
-    <%= render partial: "solicitation_fields", locals: { f: solicitations_fields } %>
+  <div id='solicitation'>
+    <%= form.fields_for :solicitation do |solicitation_fields | %>
+    <%= render partial: "solicitation_fields", locals: { f: solicitation_fields } %>
     <% end %>
-  </div>
-
-  <div class="field">
-      <%= link_to_add_association('Adicionar Solicitação', form, :solicitations, :class => 'btn btn-primary btn-sm') %>
   </div>
 
   <div class="field">

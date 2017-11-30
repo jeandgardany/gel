@@ -1,0 +1,87 @@
+<p id="notice"><%= notice %></p>
+<%= search_form_for(@q, format: :pdf) do |f| %>
+<!--%= f.label :laboratory_id_eq, "Laboratório:" %-->
+<%= f.search_field :laboratory_id_eq,placeholder: 'Pesquisar Laboratório...' %>
+<%= f.search_field :movement_action_cont, placeholder: 'Pesquisar Ação...' %>
+<%= f.search_field :movement_product_name_cont, placeholder: 'Pesquisar Produto...' %>
+<%= f.search_field :movement_amount_lteq, placeholder: 'Pesquisar Qtd menor/igual...' %>
+<%= f.select :combinator, [['E', 'and'],['OU', 'or']] %>
+<%= f.search_field :movement_data_gteq, placeholder: 'Pesquisar Data Inicial...' %>
+<%= f.search_field :movement_data_lteq, placeholder: 'Pesquisar Data Final...' %>
+<%= f.search_field :movement_shelfLife_gteq, placeholder: 'Vencimento Inicial...' %>
+<%= f.search_field :movement_shelfLife_lteq, placeholder: 'Vencimento Final...' %>
+<%= f.submit %>
+<% end %>
+<h1>Estoque</h1>
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :laboratory_id, "Lab:") %>&nbsp;&nbsp;</th>
+      <th>Ação: &nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Produto:</th>
+      <th>Ctg:&nbsp;&nbsp;</th>
+      <th>Qtd: &nbsp;&nbsp;</th>      
+      <th>Validade:</th>
+      <th>Ciclos: &nbsp;</th>
+      <th>R$ Und:&nbsp;&nbsp;</th>
+      <th>R$ Total:&nbsp;&nbsp;</th>
+      <th>Data:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.where(laboratory_id: 4).each do |stock| %>
+      <tr>
+        <td><%= formatar_laboratory(stock.laboratory_name) %></td>
+        <td><%= stock.movement.action %></td>
+        <td><%= stock.movement.product.name %></td>
+        <td><%= format_category(stock.movement.product.category.name) %></td>
+        <td><%= stock.movement.amount %></td>
+        <td><%= stock.movement.shelfLife.strftime("%d/%m/%Y") %></td>
+        <td><%= stock.movement.lifeCycle %></td>
+        <td><%= valor_formatado(stock.movement.unitaryValue) %></td>
+        <td><%= valor_formatado(stock.movement.value) %></td>
+        <td><%= stock.movement.data.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Mostrar', stock, class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_stock_path(stock), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Apagar', stock, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!--%= Stock.join(Laboratory on Laboratory.id = Stock.laboratory_id).where(action: 'Saida', laboratory_id: :idselect).sum(:value) %-->
+<table>
+      <thead>
+        <tr>
+          <th>Qtd Entradas de Produtos &nbsp;&nbsp;&nbsp;</th>
+          <th>Valor Total de Entradas &nbsp;&nbsp;&nbsp;</th>
+          <th>Qtd Saídas de Produtos &nbsp;&nbsp;&nbsp;</th>
+          <th>Valor Total de Saídas &nbsp;&nbsp;&nbsp;</th>
+          <th>Estoque Total de Produtos &nbsp;&nbsp;&nbsp;</th>
+          <th>Valor Total do Estoque &nbsp;&nbsp;&nbsp;</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= Movement.where(action: 'Entrada').sum(:amount) %></td>
+        <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value)) %></td>
+        <td><%= Movement.where(action: 'Saida').sum(:amount) %></td>
+        <td><%= valor_formatado(Movement.where(action: 'Saida').sum(:value)) %></td>
+        <td><%= Movement.where(action: 'Entrada').sum(:amount) - Movement.where(action: 'Saida').sum(:amount) %></td>
+        <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value) - Movement.where(action: 'Saida').sum(:value)) %></td>
+      </tr>
+      <%= paginate @stocks %>
+
+    </tbody>
+  </table>
+<br>
+<%= link_to 'Imprimir', stock_index_pdf_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+
+<%= link_to t('.new', :default => t("Nova Entrada")),
+            stock_input_path, :class => 'btn btn-primary btn-sm' %>
+<%= link_to t('.new', :default => t("Nova Saída")),
+            new_stock_path, :class => 'btn btn-primary btn-sm' %>
+<%= link_to t('.new', :default => t("Voltar")),
+            stocks_path, :class => 'btn btn-primary btn-sm' %>

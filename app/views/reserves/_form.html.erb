@@ -1,0 +1,62 @@
+<%= form_with(model: reserve, local: true) do |form| %>
+  <% if reserve.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
+
+      <ul>
+      <% reserf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :employee_id, "Funcionário" %>
+    <%= form.collection_select :employee_id, Employee.all, :id, :name, prompt: "Selecione" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_area :description, id: :reserf_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :laboratory_id, "Laboratório" %>
+    <%= form.collection_select :laboratory_id, Laboratory.all, :id, :name, prompt: "Selecione" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shift, "Turno" %>
+    <%= select("reserve", "shift", ['Manhã', 'Tarde', 'Noite'], {prompt: "Selecione"}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date, "Data" %>
+    <%= form.date_select :date, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :reserf_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :startTime, "Hora Inicial" %>
+    <%= form.time_select :startTime, id: :reserf_startTime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :endTime, "Hora Final" %>
+    <%= form.time_select :endTime, id: :reserf_endTime %>
+  </div>
+
+  <div id='quantities'>
+    <%= form.fields_for :quantities do |quantities_fields | %>
+    <%= render partial: "quantity_fields", locals: { f: quantities_fields } %>
+    <% end %>
+  </div>
+
+  <div class="field">
+      <%= link_to_add_association('Solicitar Produtos', form, :quantities, :class => 'btn btn-primary btn-sm') %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

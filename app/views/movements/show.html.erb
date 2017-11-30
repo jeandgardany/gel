@@ -6,6 +6,17 @@
 </p>
 
 <p>
+  <strong>Solicitante:</strong>
+  <%= @movement.solicitation_employee_office_name %>
+  <%= @movement.solicitation_employee_name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @movement.solicitation_description %>
+</p>
+
+<p>
   <strong>Qtd:</strong>
   <%= @movement.amount %>
 </p>
@@ -44,3 +55,4 @@
 
 <%= link_to 'Editar', edit_movement_path(@movement), class: "btn btn-primary btn-sm" %> |
 <%= link_to 'Voltar', movements_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Imprimir', movement_path(format: :pdf), class: "btn btn-danger btn-sm" %>

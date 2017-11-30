@@ -1,0 +1,11 @@
+ 		<div class="nested-fields">
+          <div class="field">
+            <%= f.label :product_id, "Nome" %>
+            <%= f.collection_select :product_id, @products, :id, :name, prompt: "Selecione", class: "quantity-field" %>
+          </div>
+          <div class="field">
+            <%= f.label :amount, "Quantidade" %>
+            <%= f.number_field :amount, class: "quantity-field" %>
+            <%= link_to_remove_association('Remover', f) %>
+          </div>
+        </div>

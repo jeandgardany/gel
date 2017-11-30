@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Solicitante:</strong>
+  <%= @reserve.employee.office.name %>
+  <%= @reserve.employee.name %>
+</p>
+
+<p>
+  <strong>Laboratório:</strong>
+  <%= @reserve.laboratory.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @reserve.description %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @reserve.date.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Turno:</strong>
+  <%= @reserve.shift %>
+</p>
+
+<p>
+  <strong>Hs Inicial:</strong>
+  <%= @reserve.startTime.strftime("%H:%M") %>
+</p>
+
+<p>
+  <strong>Hs Final:</strong>
+  <%= @reserve.endTime.strftime("%H:%M") %>
+</p>
+
+<p>
+  <strong>Produtos Solicitados:</strong><br>
+<% @reserve.quantities.each do |qtd| %>
+<%= "Qtd: #{qtd.amount} ::" + " Nome: #{qtd.product.name}" %>
+<% end %>
+</p>
+
+<%= link_to 'Imprimir', reserf_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+<%= link_to 'Editar', edit_reserf_path(@reserve), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Voltar', reserves_path, class: "btn btn-primary btn-sm" %>

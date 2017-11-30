@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  description: MyString
+  laboratory: one
+  shift: MyString
+  date: 2017-11-24
+  startTime: 2017-11-24 22:26:48
+  endTime: 2017-11-24 22:26:48
+
+two:
+  employee: two
+  description: MyString
+  laboratory: two
+  shift: MyString
+  date: 2017-11-24
+  startTime: 2017-11-24 22:26:48
+  endTime: 2017-11-24 22:26:48

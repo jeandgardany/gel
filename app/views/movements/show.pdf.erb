@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+<font size="4"><strong>.:: Relatório Saída do Estoque ::.</strong></font><br>
+<font size="2">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+<font size="2">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+<table>
+<font size="2">
+<p>
+  <strong>Ação:</strong>
+  <%= @movement.action %>
+</p>
+
+<p>
+  <strong>Solicitante:</strong><br>
+  <% @movement.solicitations.each do |sol| %>
+  <%= "Cod: #{sol.employee.code} Nome: #{sol.employee.name}" %><br>
+  <%= "Cargo: #{sol.employee.office_name}" %><br>
+  <%= "Descrição: #{sol.description}" %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @movement.product.name %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @movement.amount %>
+</p>
+
+<p>
+  <strong>Etiquetas:</strong>
+  <% @movement.patrimonies.each do |pat| %>
+  <%= pat.tag %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
+  <%= @movement.shelfLife.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Ciclos:</strong>
+  <%= @movement.lifeCycle %>
+</p>
+
+<p>
+  <strong>Valor Und:</strong>
+  <%= valor_formatado(@movement.unitaryValue) %>
+</p>
+
+<p>
+  <strong>Valor Total:</strong>
+  <%= valor_formatado(@movement.value) %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @movement.data.strftime("%d/%m/%Y") %>
+</p>
+<br>
+<p>
+  <strong>Resposável:</strong>
+  <strong>____________________________________________________</strong>
+</p>
+<br>
+<p>
+  <strong>Solicitande:</strong>
+  <strong>____________________________________________________</strong>
+</p>
+</font>
+</table>
+<br>

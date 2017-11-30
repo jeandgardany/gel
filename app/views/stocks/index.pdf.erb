@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<font size="5"><strong>.:: Relatório de Estoque ::.</strong></font>
-<font size="3">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
-<font size="3">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
-<table>
-<div nobreak>
+  <font size="4"><strong>.:: Relatório de Estoque ::.</strong></font><br>
+  <font size="2">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+  <font size="2">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+  <table>
+  <font size="2">
   <thead>
     <tr>
       <th>Lab</th>
@@ -58,6 +58,5 @@
      <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value) - Movement.where(action: 'Saida').sum(:value)) %></td>
     </tr>
   </tbody>
+  </font>
 </table>
-<!-- PAGE BREAK -->
-</div>

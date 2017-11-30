@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124111034) do
+ActiveRecord::Schema.define(version: 20171125184738) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -77,6 +77,30 @@ ActiveRecord::Schema.define(version: 20171124111034) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "product_id"
+    t.integer "amount", null: false
+    t.bigint "reserve_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_quantities_on_product_id"
+    t.index ["reserve_id"], name: "index_quantities_on_reserve_id"
+  end
+
+  create_table "reserves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "employee_id"
+    t.string "description"
+    t.bigint "laboratory_id"
+    t.string "shift"
+    t.date "date"
+    t.time "startTime"
+    t.time "endTime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_reserves_on_employee_id"
+    t.index ["laboratory_id"], name: "index_reserves_on_laboratory_id"
+  end
+
   create_table "solicitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "description", null: false
     t.bigint "employee_id"
@@ -116,6 +140,10 @@ ActiveRecord::Schema.define(version: 20171124111034) do
   add_foreign_key "movements", "stocks"
   add_foreign_key "patrimonies", "movements"
   add_foreign_key "products", "categories"
+  add_foreign_key "quantities", "products"
+  add_foreign_key "quantities", "reserves", column: "reserve_id"
+  add_foreign_key "reserves", "employees"
+  add_foreign_key "reserves", "laboratories"
   add_foreign_key "solicitations", "employees"
   add_foreign_key "solicitations", "movements"
   add_foreign_key "stocks", "laboratories"

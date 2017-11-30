@@ -26,6 +26,45 @@ def index_pdf
     end
   end
 end
+# GET /stock/laboratory
+def laboratory1
+    #@movements = Movement.all
+    @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(19)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "stocks/laboratory1_pdf",
+        layout: 'pdf'
+      end
+    end
+  end
+
+  def laboratory2
+    #@movements = Movement.all
+    @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(19)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "stocks/laboratory2_pdf",
+        layout: 'pdf'
+      end
+    end
+  end
+
+  def laboratory3
+    #@movements = Movement.all
+    @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(19)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "stocks/laboratory3_pdf",
+        layout: 'pdf'
+      end
+    end
+  end
 
   #GET /stocks/entrada
   def entrada
@@ -59,13 +98,31 @@ end
     end
   end
 
-  # GET /stocks/new
-  def new 
+  #GET /stocks/input
+  def input
     @stock = Stock.new
     @stock.build_movement
     @patrimonies = Patrimony.all
     @product_select = Product.all
-    @laboratory_select = Laboratory.all
+    @laboratories = Laboratory.all
+    @movement_select = Movement.all
+    @patrimonies = Patrimony.all
+    @employee_select = Employee.all
+    @stocks = Stock.search(params[:query])
+    respond_to do |format|
+      format.html
+    end
+
+  end
+
+  # GET /stocks/new
+  def new 
+    @stock = Stock.new
+    @stock.build_movement
+    @stocks = Stock.all
+    @patrimonies = Patrimony.all
+    @product_select = Product.all
+    @laboratories = Laboratory.all
     @movement_select = Movement.all
     @patrimonies = Patrimony.all
     @employee_select = Employee.all
@@ -78,7 +135,7 @@ end
 
   # GET /stocks/1/edit
   def edit
-    @laboratory_select = Laboratory.all
+    @laboratories = Laboratory.all
     @movement_select = Movement.all
     @product_select = Product.all
     @patrimonies = Patrimony.all
@@ -133,6 +190,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:laboratory_id, movement_attributes: [:id, :action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, patrimonies_attributes: [:id, :tag, :_destroy], solicitations_attributes: [:id, :employee_id, :description, :_destroy, employee_attibutes: [:id, :code, :name, :office_id, :_destroy, office_attibutes: [:id, :name]]]])
+      params.require(:stock).permit(:laboratory_id, movement_attributes: [:id, :action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, patrimonies_attributes: [:id, :tag, :_destroy], solicitation_attributes: [:id, :employee_id, :description, :movement_id, :_destroy, employee_attibutes: [:id, :code, :name, :office_id, :_destroy, office_attibutes: [:id, :name]]]])
     end
 end

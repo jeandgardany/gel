@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
-<font size="5"><strong>.:: Relatório de Estoque ::.</strong></font>
-<font size="3">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
-<font size="3">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+<font size="4"><strong>.:: Relatório Saída do Estoque ::.</strong></font><br>
+<font size="2">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+<font size="2">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
 <table>
+<font size="2">
 <p>
   <strong>Ação:</strong>
   <%= @stock.movement.action %>
@@ -62,3 +63,17 @@
   <strong>Data:</strong>
   <%= @stock.movement.data.strftime("%d/%m/%Y") %>
 </p>
+
+<br>
+<p>
+  <strong>Resposável:</strong>
+  <strong>____________________________________________________</strong>
+</p>
+<br>
+<p>
+  <strong>Solicitande:</strong>
+  <strong>____________________________________________________</strong>
+</p>
+</font>
+</table>
+<br>

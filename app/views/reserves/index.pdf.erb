@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<font size="4"><strong>.:: Relatório Reservas dos Laboratórios ::.</strong></font><br>
+<font size="2">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+<font size="2">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+<font size="3">
+<table>
+  <thead>
+    <tr>
+      <th>Solicitante:&nbsp;&nbsp;</th>
+      <th>Laboratório:&nbsp;&nbsp;</th>
+      <th>Descrição:</th>
+      <th>Turno:</th>
+      <th>Data:</th>
+      <th>H.Inicial:&nbsp;&nbsp;</th>
+      <th>H.Final:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reserves.each do |reserve| %>
+      <tr>
+        <td><%= reserve.employee.name %></td>
+        <td><%= formatar_laboratory(reserve.laboratory.name) %></td>
+        <td><%= reserve.description %></td>
+        <td><%= reserve.shift %></td>
+        <td><%= reserve.date.strftime("%d/%m/%Y") %></td>
+        <td><%= reserve.startTime.strftime("%H:%M") %></td>
+        <td><%= reserve.endTime.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</font>
+<br>

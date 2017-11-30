@@ -54,12 +54,22 @@ class MovementsController < ApplicationController
   # GET /movements/1
   # GET /movements/1.json
   def show
+    @q = Movement.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @movements = @q.result(distinct: true)
+    #@movements = Movement.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "movements",
+        layout: 'pdf'
+      end
+    end
   end
 
   # GET /movements/new
   def new
     @movement = Movement.new
-    #@movement.build_patrimony
+    @movement.build_solicitation
     @patrimonies = Patrimony.all
     @solicitations = Solicitation.all
     @employee_select = Employee.all
@@ -121,6 +131,6 @@ class MovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movement_params
-      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id, patrimonies_attributes: [:id, :tag, :_destroy], solicitations_attributes: [:id, :description, :employee_id, :_destroy, employee_attibutes:[:id, :code, :name, :_destroy, office_attributes: [:id, :name]]])
+      params.require(:movement).permit(:action, :product_id, :amount, :shelfLife, :lifeCycle, :unitaryValue, :value, :data, :stock_id, patrimonies_attributes: [:id, :tag, :_destroy], solicitation_attributes: [:id, :description, :employee_id, :_destroy, employee_attibutes:[:id, :code, :name, :_destroy, office_attributes: [:id, :name]]])
     end
 end

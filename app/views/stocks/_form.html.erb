@@ -13,23 +13,19 @@
 
   <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
-    <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
+    <%= form.collection_select :laboratory_id, @laboratories, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
   </div>
-  <%= form.fields_for :movement do |ff | %>
 
   <div class="field">
+  <%= form.fields_for :movement do |ff | %>
     <%= ff.label :action, "Ação" %>
-    <%= ff.select(:action, ['Entrada', 'Saida'], prompt: "Selecione") %>
+    <%= ff.select(:action, ['Saida']) %>
   </div>
 
   <div id='solicitations'>
-    <%= ff.fields_for :solicitations do |solicitations_fields | %>
+    <%= ff.fields_for :solicitation do |solicitations_fields | %>
     <%= render partial: "solicitation_fields", locals: { f: solicitations_fields } %>
     <% end %>
-  </div>
-
-  <div class="field">
-      <%= link_to_add_association('Adicionar Solicitação', ff, :solicitations, :class => 'btn btn-primary btn-sm') %>
   </div>
 
   <div class="field">
@@ -86,4 +82,3 @@
   </div>
 
 <% end %>
-

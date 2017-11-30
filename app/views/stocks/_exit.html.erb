@@ -1,0 +1,85 @@
+<%= form_with(model: stock, local: true) do |form| %>
+  <% if stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+
+      <ul>
+      <% stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :laboratory_id, "Laboratório" %>
+    <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
+  </div>
+  <%= form.fields_for :movement do |ff | %>
+
+  <div class="field">
+    <%= ff.label :action, "Ação" %>
+    <%= ff.select(:action, ['Entrada', 'Saida'], prompt: "Selecione") %>
+  </div>
+
+  <div id='solicitations'>
+    <%= ff.fields_for :solicitations do |solicitations_fields | %>
+    <%= render partial: "solicitation_fields", locals: { f: solicitations_fields } %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :product_id, "Produto" %>
+    <%= ff.collection_select :product_id, @product_select, :id, :name, prompt: "Selecione", id: :movement_product_id %>
+    <%= link_to t('.new', :default => t("Novo Produto")),
+            new_product_path, :class => 'btn btn-success btn-sm' %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :amount, "Quantidade" %>
+    <%= ff.number_field :amount, id: :movement_amount %>
+  </div>
+
+  <div id='patrimonies'>
+    <%= ff.fields_for :patrimonies do |patrimonies_fields | %>
+      <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
+    <% end %>
+
+    <div class="field">
+      <%= link_to_add_association('Adicionar Etiqueta', ff, :patrimonies, :class => 'btn btn-primary btn-sm') %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= ff.label :shelfLife, "Validade" %>
+    <%= ff.date_select :shelfLife, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :movement_shelfLife %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :lifeCycle, "Ciclo de Vida" %>
+    <%= ff.number_field :lifeCycle, id: :movement_lifeCycle %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :unitaryValue, "Valor Unitário" %>
+    <%= ff.text_field :unitaryValue, id: :movement_unitaryValue %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :value, "Valor Total" %>
+    <%= ff.text_field :value, id: :movement_value %>
+  </div>
+
+  <div class="field">
+    <%= ff.label :data, "Data" %>
+    <%= ff.date_select :data, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :movement_data %>
+  </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+

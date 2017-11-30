@@ -6,7 +6,7 @@ class Stock < ApplicationRecord
   
   validates :laboratory_id, presence: true
   accepts_nested_attributes_for :laboratory, :movement, reject_if: :all_blank, allow_destroy: true
-  #accepts_nested_attributes_for :patrimonies, reject_if: :all_blank, allow_destroy: true
+  #accepts_nested_attributes_for :solicitation
 
   def self.search(query)
 

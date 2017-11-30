@@ -1,8 +1,8 @@
 class Solicitation < ApplicationRecord
 belongs_to :employee
-belongs_to :movement
+has_many :movements
 
-accepts_nested_attributes_for :movement, :employee, reject_if: :all_blank, allow_destroy: true
+accepts_nested_attributes_for :movements, :employee, reject_if: :all_blank, allow_destroy: true
 
 	def office_name
 	    if self.office.blank?

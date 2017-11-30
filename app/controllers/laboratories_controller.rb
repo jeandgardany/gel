@@ -7,6 +7,10 @@ class LaboratoriesController < ApplicationController
     @laboratories = Laboratory.all
   end
 
+  def laboratorios
+    @laboratories = Laboratory.all
+  end
+
   # GET /laboratories/1
   # GET /laboratories/1.json
   def show

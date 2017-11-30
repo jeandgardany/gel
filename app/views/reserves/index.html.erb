@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reservas dos Laboratórios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Solicitante:&nbsp;&nbsp;</th>
+      <th>Laboratório:&nbsp;&nbsp;</th>
+      <th>Descrição:</th>
+      <th>Turno:</th>
+      <th>Data:</th>
+      <th>H.Inicial:&nbsp;&nbsp;</th>
+      <th>H.Final:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reserves.each do |reserve| %>
+      <tr>
+        <td><%= reserve.employee.name %></td>
+        <td><%= formatar_laboratory(reserve.laboratory.name) %></td>
+        <td><%= reserve.description %></td>
+        <td><%= reserve.shift %></td>
+        <td><%= reserve.date.strftime("%d/%m/%Y") %></td>
+        <td><%= reserve.startTime.strftime("%H:%M") %></td>
+        <td><%= reserve.endTime.strftime("%H:%M") %></td>
+        <td><%= link_to 'Mostrar', reserve, class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_reserf_path(reserve), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Apagar', reserve, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Imprimir', reserves_path(format: :pdf), class: "btn btn-danger btn-sm" %>
+<%= link_to 'Nova Reserva', new_reserf_path, :class => 'btn btn-primary btn-sm' %>
+<%= link_to 'Voltar', laboratories_path, class: "btn btn-primary btn-sm" %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :quantities
+  resources :reserves
   resources :solicitations
   resources :offices
   resources :employees
@@ -19,8 +21,12 @@ Rails.application.routes.draw do
   post '/stock/id/show_pdf' => 'stocks#id#show_pdf'
   get '/stock/buscar' => 'stocks#buscar'
   post '/stock/resultado' => 'stocks#resultado'
-  get '/stock/entrada' => 'stocks#entrada'
+  get '/stock/input' => 'stocks#input'
+  get '/stock/laboratory1' => 'stocks#laboratory1'
+  get '/stock/laboratory2' => 'stocks#laboratory2'
+  get '/stock/laboratory3' => 'stocks#laboratory3'
   resources :laboratories
+  get '/laboratory/laboratorios' => 'laboratories#laboratorios'
   resources :products
   get '/product/buscar' => 'products#buscar'
   post '/product/resultado' => 'products#resultado'

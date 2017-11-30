@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_solicitation_path(@solicitation) %> |
-<%= link_to 'Back', solicitations_path %>
+<p>
+  <strong>Cargo:</strong>
+  <%= @solicitation.employee.office_name %>
+</p>
+
+<p>
+  <strong>Solicitante:</strong>
+  <%= @solicitation.employee.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @solicitation.description %>
+</p>
+
+<%= link_to 'Editar', edit_solicitation_path(@solicitation) %> |
+<%= link_to 'Voltar', solicitations_path %>

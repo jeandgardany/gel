@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Saídas<h4><%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></h4></h1>
+<p id="notice"><%= notice %></p>
+<font size="4"><strong>.:: Relatório Saída do Estoque ::.</strong></font><br>
+<font size="2">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
+<font size="2">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+<font size="2">
 <table>
+
   <thead>
     <tr>
       <th>Ação &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -50,4 +54,5 @@
       </tr>
     </tbody>
   </table>
-
+</font>
+<br>
