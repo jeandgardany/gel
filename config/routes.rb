@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'control_members/index' => 'control_members#index'
+  get 'control_member/id/show' => 'control_member#id#show'
   resources :quantities
   resources :reserves
   resources :solicitations

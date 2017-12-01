@@ -22,6 +22,8 @@ gem 'wkhtmltopdf-binary'
 gem 'puma', '~> 3.7'
 # Formulario de pesquisa
 gem 'ransack'
+# Pundit provides a set of helpers which guide you in leveraging regular Ruby classes and object oriented design patterns to build a simple, robust and scaleable authorization system.
+gem 'pundit'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 # Use Uglifier as compressor for JavaScript assets

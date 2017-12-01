@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Laboratórios</h1><br>
-
-
-<%= link_to 'Cadastrar', laboratory_laboratorios_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to 'Reservas', reserves_path, :class => 'btn btn-primary btn-sm' %>
-<br><br>
+<% @usuario = current_user %>
+<% if @usuario.admin? %>
+<%= render partial: "admin_index" %>
+<% else @usuario.professor? %>
+<%= render partial: "professor_index" %>
+<% end %>
