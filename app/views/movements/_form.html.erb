@@ -21,6 +21,9 @@
     <%= render partial: "solicitation_fields", locals: { f: solicitation_fields } %>
     <% end %>
   </div>
+  <div class="field">
+    <%= link_to_add_association('Adicionar Solicitante', form, :solicitation, :class => 'btn btn-primary btn-sm') %>
+  </div>
 
   <div class="field">
     <%= form.label :product_id, "Produto" %>

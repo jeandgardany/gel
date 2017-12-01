@@ -6,7 +6,13 @@
 <font size="2">
 <p>
   <strong>Solicitante:</strong>
+  <%= @reserve.employee.office.name %>
   <%= @reserve.employee.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @reserve.description %>
 </p>
 
 <p>

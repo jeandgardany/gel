@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/stock/buscar' => 'stocks#buscar'
   post '/stock/resultado' => 'stocks#resultado'
   get '/stock/input' => 'stocks#input'
+  get '/stock/exit' => 'stocks#exit'
   get '/stock/laboratory1' => 'stocks#laboratory1'
   get '/stock/laboratory2' => 'stocks#laboratory2'
   get '/stock/laboratory3' => 'stocks#laboratory3'

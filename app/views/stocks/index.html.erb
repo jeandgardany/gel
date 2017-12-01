@@ -34,8 +34,8 @@
     <% @stocks.order(laboratory_id: :asc).each do |stock| %>
       <tr>
         <td><%= formatar_laboratory(stock.laboratory_name) %></td>
-        <td><%= stock.movement.action %></td>
-        <td><%= stock.movement.product.name %></td>
+        <td><%= stock.movement_action %></td>
+        <td><%= stock.movement_product_name %></td>
         <td><%= format_category(stock.movement.product.category.name) %></td>
         <td><%= stock.movement.amount %></td>
         <td><%= stock.movement.shelfLife.strftime("%d/%m/%Y") %></td>
@@ -82,7 +82,7 @@
 <%= link_to t('.new', :default => t("Nova Entrada")),
             stock_input_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Nova Saída")),
-            new_stock_path, :class => 'btn btn-primary btn-sm' %>
+            stock_exit_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Laboratório 01")),
             stock_laboratory1_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Laboratório 02")),

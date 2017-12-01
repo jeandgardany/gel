@@ -1,11 +1,11 @@
 <div class="nested-fields">
     <div class="field">
-        <%= f.label :employee_id, "Solicitante" %>
-        <%= f.collection_select :employee_id, @employee_select, :id, :name, prompt: "Selecione", class: "solicitation-field" %>
+       <%= f.label :employee_id, "Solicitante" %>
+       <%= f.collection_select :employee_id, @employee_select, :id, :name, prompt: "Selecione", class: "solicitation-field" %>
     </div>
     <div class="field">
-        <%= f.label :description, "Descrição" %>
-        <%= f.text_area :description, class: "solicitation-field" %>
-        <!--%= link_to_remove_association('Remover', f) %-->
+       <%= f.label :description, "Descrição" %>
+       <%= f.text_area :description, class: "solicitation-field" %>
+       <!--%= link_to_remove_association('Remover', f) %-->
     </div>
 </div>

@@ -1,4 +1,4 @@
-<h1>Nova Entrada no Estoque</h1>
+<h1>Nova Entrada do Estoque</h1>
 <%= form_with(model: @stock, local: true) do |form| %>
   <% if @stock.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
-    <%= form.collection_select :laboratory_id, @laboratory_select, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
+    <%= form.collection_select :laboratory_id, @laboratories, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
   </div>
   <%= form.fields_for :movement do |ff | %>
 

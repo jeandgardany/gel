@@ -19,13 +19,7 @@
   <div class="field">
     <%= form.fields_for :movement do |ff | %>
     <%= ff.label :action, "Ação" %>
-    <%= ff.select(:action, ['Entrada','Saida']) %>
-  </div>
-
-  <div id='solicitation'>
-    <%= ff.fields_for :solicitation do |solicitation_fields | %>
-    <%= render partial: "solicitation_fields", locals: { f: solicitation_fields } %>
-    <% end %>
+    <%= ff.select(:action, ['Saida']) %>
   </div>
 
   <div class="field">
@@ -42,7 +36,7 @@
 
   <div id='patrimonies'>
     <%= ff.fields_for :patrimonies do |patrimonies_fields | %>
-    <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
+      <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
     <% end %>
 
     <div class="field">

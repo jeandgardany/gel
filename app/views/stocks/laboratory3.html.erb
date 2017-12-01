@@ -64,14 +64,7 @@
         </tr>
       </thead>
       <tbody>
-      <tr>
-        <td><%= Movement.where(action: 'Entrada').sum(:amount) %></td>
-        <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value)) %></td>
-        <td><%= Movement.where(action: 'Saida').sum(:amount) %></td>
-        <td><%= valor_formatado(Movement.where(action: 'Saida').sum(:value)) %></td>
-        <td><%= Movement.where(action: 'Entrada').sum(:amount) - Movement.where(action: 'Saida').sum(:amount) %></td>
-        <td><%= valor_formatado(Movement.where(action: 'Entrada').sum(:value) - Movement.where(action: 'Saida').sum(:value)) %></td>
-      </tr>
+      
       <%= paginate @stocks %>
 
     </tbody>

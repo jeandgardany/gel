@@ -7,15 +7,17 @@
 
 <p>
   <strong>Laboratório:</strong>
-  <%= @stock.laboratory_id %>
+  <%= @stock.laboratory_name %>
 </p>
 
 <p>
   <strong>Solicitante:</strong>
-  <% @stock.movement.solicitation do |sol| %>
-  <%= "Cod: #{sol_employee_code} Nome: #{sol_employee_name}" %><br>
-  <%= "Descrição: #{sol_description}" %>
-  <% end %>
+  <%= @stock.movement.solicitation_employee_name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @stock.movement.solicitation_description %>
 </p>
 
 <p>
