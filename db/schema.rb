@@ -92,9 +92,8 @@ ActiveRecord::Schema.define(version: 20171201163308) do
     t.string "description"
     t.bigint "laboratory_id"
     t.string "shift"
-    t.date "date"
-    t.time "startTime"
-    t.time "endTime"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_reserves_on_employee_id"

@@ -5,6 +5,7 @@ class QuantitiesController < ApplicationController
   # GET /quantities.json
   def index
     @quantities = Quantity.all
+    @reserves = Reserve.all
   end
 
   # GET /quantities/1

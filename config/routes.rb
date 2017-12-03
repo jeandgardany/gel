@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'control_member/id/show' => 'control_member#id#show'
   resources :quantities
   resources :reserves
+  get '/reserve/solicitations' => 'reserves#solicitations'
   resources :solicitations
   resources :offices
   resources :employees

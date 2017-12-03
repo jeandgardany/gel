@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Quantities</h1>
+<h1>Quantidades</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Product</th>
-      <th>Amount</th>
-      <th>Request</th>
+      <th>Produto</th>
+      <th>Qtd</th>
+      <th>Reserva</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +15,12 @@
   <tbody>
     <% @quantities.each do |quantity| %>
       <tr>
-        <td><%= quantity.product %></td>
+        <td><%= quantity.product.name %></td>
         <td><%= quantity.amount %></td>
-        <td><%= quantity.request %></td>
-        <td><%= link_to 'Show', quantity %></td>
-        <td><%= link_to 'Edit', edit_quantity_path(quantity) %></td>
-        <td><%= link_to 'Destroy', quantity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= quantity.reserve_id %></td>
+        <td><%= link_to 'Mostrar', quantity %></td>
+        <td><%= link_to 'Editar', edit_quantity_path(quantity) %></td>
+        <td><%= link_to 'Apagar', quantity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

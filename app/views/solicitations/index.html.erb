@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Solicitations</h1>
+<h1>Solicitações</h1>
 
 <table>
   <thead>
@@ -9,6 +9,7 @@
       <th>Código:</th>
       <th>Cargo:</th>
       <th>Descrição:</th>
+      <th>Data:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +21,10 @@
         <td><%= solicitation.employee.code %></td>
         <td><%= solicitation.employee.office_name %></td>
         <td><%= solicitation.description %></td>
-        <td><%= link_to 'Show', solicitation %></td>
-        <td><%= link_to 'Edit', edit_solicitation_path(solicitation) %></td>
-        <td><%= link_to 'Destroy', solicitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= solicitation.movement.data.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Mostrar', solicitation, class: "btn btn-success btn-sm"  %></td>
+        <td><%= link_to 'Editar', edit_solicitation_path(solicitation), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Apagar', solicitation, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Solicitation', new_solicitation_path %>
+<%= link_to 'Nova Solicitação', new_solicitation_path, class: "btn btn-primary btn-sm" %>

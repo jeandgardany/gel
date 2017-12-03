@@ -32,18 +32,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :date, "Data" %>
-    <%= form.date_select :date, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :reserf_date %>
+    <%= form.label :start_time, "Hora Inicial" %>
+    <%= form.datetime_select :start_time, id: :reserf_start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :startTime, "Hora Inicial" %>
-    <%= form.time_select :startTime, id: :reserf_startTime %>
-  </div>
-
-  <div class="field">
-    <%= form.label :endTime, "Hora Final" %>
-    <%= form.time_select :endTime, id: :reserf_endTime %>
+    <%= form.label :end_time, "Hora Final" %>
+    <%= form.datetime_select :end_time, id: :reserf_end_time %>
   </div>
 
   <div id='quantities'>

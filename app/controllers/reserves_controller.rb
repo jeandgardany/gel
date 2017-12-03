@@ -6,7 +6,7 @@ class ReservesController < ApplicationController
   def index
     #@reserves = Reserve.all
     @q = Reserve.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @reserves = @q.result(distinct: true)
+    @reserves = @q.result(distinct: true).order(id: :desc)
     respond_to do |format|
       format.html
       format.pdf do
@@ -19,6 +19,18 @@ class ReservesController < ApplicationController
   # GET /reserves/1
   # GET /reserves/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "reserves",
+        layout: 'pdf'
+      end
+    end
+  end
+
+  def solicitations
+    @reserves = Reserve.all.order(id: :desc)
+    @quantities = Quantity.all
     respond_to do |format|
       format.html
       format.pdf do
@@ -93,6 +105,6 @@ class ReservesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserve_params
-      params.require(:reserve).permit(:id, :description, :shift, :date, :startTime, :endTime, :employee_id, :laboratory_id, quantities_attributes: [:id, :product_id, :amount, :_destroy, products_attributes: [:id, :code, :name, :category_id, :description, :provider]])
+      params.require(:reserve).permit(:id, :description, :shift, :start_time, :end_time, :employee_id, :laboratory_id, quantities_attributes: [:id, :product_id, :amount, :_destroy, products_attributes: [:id, :code, :name, :category_id, :description, :provider]])
     end
 end

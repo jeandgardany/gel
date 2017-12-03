@@ -1,0 +1,32 @@
+<h1>Solicitações de Produtos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Solicitante:&nbsp;&nbsp;</th>
+      <th>Laboratório:&nbsp;&nbsp;</th>
+      <th>Turno:</th>
+      <th>Inicio:&nbsp;&nbsp;</th>
+      <th>Final:</th>
+      <th>Produtos:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reserves.each do |reserve| %>
+      <tr>
+        <td><%= reserve.employee.office.name %> <%= reserve.employee.name %></td>
+        <td><%= formatar_laboratory(reserve.laboratory.name) %></td>
+        <td><%= reserve.shift %></td>
+        <td><%= reserve.start_time.strftime("%d/%m/%Y-%H:%M") %></td>
+        <td><%= reserve.end_time.strftime("%H:%M") %></td>
+        <% reserve.quantities.each do |qtd| %>
+        <td><%= "Qtd:#{qtd.amount} ::" + "#{qtd.product.name}" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -4,7 +4,7 @@ class SolicitationsController < ApplicationController
   # GET /solicitations
   # GET /solicitations.json
   def index
-    @solicitations = Solicitation.all
+    @solicitations = Solicitation.all.order(id: :desc)
   end
 
   # GET /solicitations/1
