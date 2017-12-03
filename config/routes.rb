@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'send' => 'send#index'
+  post 'send' => 'send#create'
+
   get 'control_members/index' => 'control_members#index'
   get 'control_member/id/show' => 'control_member#id#show'
   resources :quantities
