@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
-    @employee = Employee.new
+    authorize @employee = Employee.new
     @office = Office.all
   end
 
@@ -66,7 +66,7 @@ class EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
-      @employee = Employee.find(params[:id])
+      authorize @employee = Employee.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

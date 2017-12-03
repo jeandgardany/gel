@@ -45,9 +45,9 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    authorize @product = Product.new
     @category_select = Category.all
-    @categ = Category.new
+    authorize @categ = Category.new
 
   end
 

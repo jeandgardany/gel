@@ -100,7 +100,7 @@ def laboratory1
 
   #GET /stocks/input
   def input
-    @stock = Stock.new
+    authorize @stock = Stock.new
     @stock.build_movement
     @patrimonies = Patrimony.all
     @product_select = Product.all
@@ -117,7 +117,7 @@ def laboratory1
 
   #GET /stocks/exit
   def exit
-    @stock = Stock.new
+    authorize @stock = Stock.new
     @stock.build_movement
     @patrimonies = Patrimony.all
     @product_select = Product.all
@@ -134,7 +134,7 @@ def laboratory1
 
   # GET /stocks/new
   def new 
-    @stock = Stock.new
+    authorize @stock = Stock.new
     @stock.build_movement
     @stock.build_solicitation
     @stocks = Stock.all

@@ -18,7 +18,7 @@ class LaboratoriesController < ApplicationController
 
   # GET /laboratories/new
   def new
-    @laboratory = Laboratory.new
+    authorize @laboratory = Laboratory.new
   end
 
   # GET /laboratories/1/edit

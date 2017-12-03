@@ -1,5 +1,5 @@
-class StockPolicy < ApplicationPolicy
-
+class OfficePolicy < ApplicationPolicy
+  
 	def edit?
 		user.admin?		
 	end
@@ -12,15 +12,11 @@ class StockPolicy < ApplicationPolicy
 		user.admin?		
 	end
 
+	def create?
+		user.admin?		
+	end
+
 	def destroy?
-		user.admin?		
-	end
-
-	def input?
-		user.admin?		
-	end
-
-	def exit?
 		user.admin?		
 	end
 

@@ -68,7 +68,7 @@ class MovementsController < ApplicationController
 
   # GET /movements/new
   def new
-    @movement = Movement.new
+    authorize @movement = Movement.new
     @movement.build_solicitation
     @patrimonies = Patrimony.all
     @solicitations = Solicitation.all
@@ -126,7 +126,7 @@ class MovementsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movement
-      @movement = Movement.find(params[:id])
+      authorize @movement = Movement.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

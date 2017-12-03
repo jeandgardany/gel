@@ -20,6 +20,9 @@
             <li><%= link_to "Relatórios", reports_index_path  %></li>
             <li><%= link_to "Usuários", control_members_index_path  %></li>
             <li><%= link_to "Contato", send_path  %></li>
+            <li><div id="divBusca" ><%= form_tag(products_path, method: :get) do %>
+                <%= text_field_tag 'search', nil, placeholder: 'Pesquisar produto...' %>
+                <%= submit_tag "Produtos" %><% end %></div></li>
           </ul>
         </div>
       </div>

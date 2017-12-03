@@ -26,7 +26,7 @@ class PatrimoniesController < ApplicationController
 
   # GET /patrimonies/new
   def new
-    @patrimony = Patrimony.new
+    authorize @patrimony = Patrimony.new
   end
 
   # GET /patrimonies/1/edit
@@ -76,7 +76,7 @@ class PatrimoniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patrimony
-      @patrimony = Patrimony.find(params[:id])
+      authorize @patrimony = Patrimony.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
