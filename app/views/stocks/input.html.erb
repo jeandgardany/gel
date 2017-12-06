@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
-    <%= form.collection_select :laboratory_id, @laboratories, :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
+    <%= form.collection_select :laboratory_id, @laboratories.where.not( :name => 'Aula Externa' ), :id, :name, prompt: "Selecione", id: :stock_laboratory_id %>
   </div>
   <%= form.fields_for :movement do |ff | %>
 
@@ -36,8 +36,9 @@
   </div>
 
   <div id='patrimonies'>
+    <b>Ultima Etiqueta Cadastrada: <%= Patrimony.last.tag %></b>
     <%= ff.fields_for :patrimonies do |patrimonies_fields | %>
-      <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
+    <%= render partial: "patrimony_fields", locals: { f: patrimonies_fields } %>
     <% end %>
 
     <div class="field">

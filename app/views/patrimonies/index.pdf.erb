@@ -2,11 +2,14 @@
 <font size="5"><strong>.:: Etiqueta de Patrimônio ::.</strong></font>
 <font size="3">&nbsp;&nbsp; Usuário: <%= current_user.email %></font>
 <font size="3">&nbsp;&nbsp; Data: <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %></font>
+
 <table>
   <thead>
     <tr>
-      <th>Etiqueta</th>
-      <th>Produto</th>
+      <th>Etiqueta: </th>
+      <th>Produto: </th>
+      <th>Ação: </th>
+      <th>Validade: </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +19,8 @@
       <tr>
         <td><%= patrimony.tag %></td>
         <td><%= patrimony.movement.product.name %></td>
+        <td><%= patrimony.movement.action %></td>
+        <td><%= patrimony.movement.shelfLife.strftime("%d/%m/%Y") %></td>
       </tr>
     <% end %>
   </tbody>

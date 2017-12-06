@@ -6,8 +6,64 @@ module ReservesHelper
 			'Lab02'
 		elsif laboratory == 'Laboratório 03'
 			'Lab03'
+		elsif laboratory == 'Laboratório 04'
+			'Lab04'
+		elsif laboratory == 'Laboratório 05'
+			'Lab05'
+		elsif laboratory == 'Laboratório 06'
+			'Lab06'
+		elsif laboratory == 'Laboratório 07'
+			'Lab07'
 		else
-			'Sala'
+			'Externo'
+		end
+		
+	end
+
+	def formatar_dia(day)
+		if day == 'Sun'
+			'Domingo'
+		elsif day == 'Mon'
+			'Segunda'
+		elsif day == 'Tue'
+			'Terça'
+		elsif day == 'Wed'
+			'Quarta'
+		elsif day == 'Thu'
+			'Quinta'
+		elsif day == 'Fri'
+			'Sexta'
+		else
+			'Sábado'
+		end
+		
+	end
+
+	def formatar_mes(month)
+		if month == 'January'
+			'Janeiro'
+		elsif month == 'February'
+			'Fevereiro'
+		elsif month == 'March'
+			'Março'
+		elsif month == 'April'
+			'Abril'
+		elsif month == 'May'
+			'Maio'
+		elsif month == 'June'
+			'Junho'
+		elsif month == 'July'
+			'Julho'
+		elsif month == 'August'
+			'Agosto'
+		elsif month == 'September'
+			'Setembro'
+		elsif month == 'October'
+			'Outubro'
+		elsif month == 'November'
+			'Novembro'
+		else
+			'Dezembro'
 		end
 		
 	end
