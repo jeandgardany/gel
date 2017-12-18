@@ -136,7 +136,7 @@ def laboratory1
   def new 
     authorize @stock = Stock.new
     @stock.build_movement
-    @stock.build_solicitation
+    #@stock.build_solicitation
     @stocks = Stock.all
     @patrimonies = Patrimony.all
     @product_select = Product.all

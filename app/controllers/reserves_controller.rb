@@ -6,7 +6,7 @@ class ReservesController < ApplicationController
   def index
     #@reserves = Reserve.all
     @q = Reserve.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @reserves = @q.result(distinct: true).order(id: :desc)
+    @reserves = @q.result(distinct: true).page(params[:page]).per(8).order(id: :desc)
     respond_to do |format|
       format.html
       format.pdf do

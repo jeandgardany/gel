@@ -46,6 +46,7 @@
   </tbody>
 </table>
 
+    <%= paginate @reserves %>
 <br>
 <%= link_to 'Imprimir', reserves_path(format: :pdf), class: "btn btn-danger btn-sm" %>
 <%= link_to 'Nova Reserva', new_reserf_path, :class => 'btn btn-primary btn-sm' %>
