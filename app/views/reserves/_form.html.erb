@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :laboratory_id, "Laboratório" %>
-    <%= form.collection_select :laboratory_id, Laboratory.all, :id, :name, prompt: "Selecione" %>
+    <%= form.collection_select :laboratory_id, Laboratory.all.where("name NOT LIKE?", "Almoxarifado"), :id, :name, prompt: "Selecione" %>
   </div>
 
   <div class="field">

@@ -34,7 +34,7 @@
         <td><%= movement.action %></td>
         <td><%= movement.product.name %></td>
         <td><%= movement.amount %></td>
-        <td><%= movement.shelfLife.strftime("%d/%m/%Y") %></td>
+        <td><%= formatar_vencimento(movement.shelfLife) %></td>
         <td><%= movement.lifeCycle %></td>
         <td><%= valor_formatado(movement.unitaryValue) %></td>
         <td><%= valor_formatado(movement.unitaryValue * movement.amount) %></td>

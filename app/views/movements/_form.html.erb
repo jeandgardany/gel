@@ -49,7 +49,7 @@
 
   <div class="field">
     <%= form.label :shelfLife, "Validade" %>
-    <%= form.date_select :shelfLife, id: :movement_shelfLife %>
+    <%= form.date_select :shelfLife, :start_year => 2017, :end_year => 2030, :order => [:day, :month, :year], id: :movement_shelfLife %>
   </div>
 
   <div class="field">

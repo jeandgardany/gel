@@ -38,7 +38,7 @@
         <td><%= stock.movement_product_name %></td>
         <td><%= format_category(stock.movement.product.category.name) %></td>
         <td><%= stock.movement.amount %></td>
-        <td><%= stock.movement.shelfLife.strftime("%d/%m/%Y") %></td>
+        <td><%= formatar_vencimento(stock.movement.shelfLife) %></td>
         <td><%= stock.movement.lifeCycle %></td>
         <td><%= valor_formatado(stock.movement.unitaryValue) %></td>
         <td><%= valor_formatado(stock.movement.value) %></td>
@@ -83,11 +83,3 @@
             stock_input_path, :class => 'btn btn-primary btn-sm' %>
 <%= link_to t('.new', :default => t("Nova Saída")),
             stock_exit_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to t('.new', :default => t("Laboratório 01")),
-            stock_laboratory1_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to t('.new', :default => t("Laboratório 02")),
-            stock_laboratory2_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to t('.new', :default => t("Laboratório 03")),
-            stock_laboratory3_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to t('.new', :default => t("Voltar")),
-            home_index_path, :class => 'btn btn-primary btn-sm' %>

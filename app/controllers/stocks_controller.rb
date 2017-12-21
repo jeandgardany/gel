@@ -6,7 +6,7 @@ class StocksController < ApplicationController
   def index
     #@movements = Movement.all
     @q = Stock.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(19)
+    @stocks = @q.result(distinct: true).includes(:movement).page(params[:page]).per(16)
     respond_to do |format|
       format.html
       format.pdf do

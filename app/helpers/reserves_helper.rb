@@ -14,6 +14,14 @@ module ReservesHelper
 			'Lab06'
 		elsif laboratory == 'Laboratório 07'
 			'Lab07'
+		elsif laboratory == 'Laboratório 08'
+			'Lab08'
+		elsif laboratory == 'Laboratório 09'
+			'Lab09'
+		elsif laboratory == 'Laboratório 10'
+			'Lab10'
+		elsif laboratory == 'Almoxarifado'
+			'Almox'
 		else
 			'Externo'
 		end
