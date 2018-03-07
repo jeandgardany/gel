@@ -21,7 +21,7 @@
         <td><%= laboratory.description %></td>
         <td><%= laboratory.capacity %></td>
         <td><%= link_to t('.new', :default => t("Mostrar")),
-            laboratory, :class => 'btn btn-success btn-sm' %></td>
+            laboratory, :class => 'btn btn-default btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,5 +29,5 @@
 
 <br>
 
-<%= link_to 'Reservas', reserves_path, :class => 'btn btn-primary btn-sm' %>
+<%= link_to 'Reservas', reserves_path, :class => 'btn btn-default btn-xs' %>
 <br><br>

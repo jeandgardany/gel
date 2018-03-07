@@ -43,6 +43,12 @@
 <% end %>
 </p>
 
+<p>
+  <strong>Validação:</strong>
+  <%= @reserve.validation.status %>
+</p>
+
 <%= link_to 'Imprimir', reserf_path(format: :pdf), class: "btn btn-danger btn-sm" %>
-<%= link_to 'Editar', edit_reserf_path(@reserve), class: "btn btn-primary btn-sm" %> |
+<% if policy(@reserve).edit? %>
+<%= link_to 'Editar', edit_reserf_path(@reserve), class: "btn btn-primary btn-sm" %> <% end %> |
 <%= link_to 'Voltar', reserves_path, class: "btn btn-primary btn-sm" %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :validations
   get 'send' => 'send#index'
   post 'send' => 'send#create'
 
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   resources :quantities
   resources :reserves
   get '/reserve/solicitations' => 'reserves#solicitations'
+  get '/reserve/reservados' => 'reserves#reservados'
+  get '/reserve/reservados_pdf' => 'reserves#reservados_pdf'
   resources :solicitations
   resources :offices
   resources :employees

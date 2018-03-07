@@ -4,9 +4,8 @@ class ReservesController < ApplicationController
   # GET /reserves
   # GET /reserves.json
   def index
-    #@reserves = Reserve.all
     @q = Reserve.ransack(params[:q].try(:merge, m: params[:combinator]))
-    @reserves = @q.result(distinct: true).page(params[:page]).per(8).order(id: :desc)
+    @reserves = @q.result(distinct: true).page(params[:page]).per(16).order(id: :desc)
     respond_to do |format|
       format.html
       format.pdf do
@@ -23,6 +22,19 @@ class ReservesController < ApplicationController
       format.html
       format.pdf do
         render pdf: "reserves",
+        layout: 'pdf'
+      end
+    end
+  end
+
+  def reservados
+    authorize Reserve
+    @q = Reserve.ransack(params[:q].try(:merge, m: params[:combinator]))
+    @reserves = @q.result(distinct: true).order(id: :desc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "reservados",
         layout: 'pdf'
       end
     end
@@ -105,6 +117,6 @@ class ReservesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserve_params
-      params.require(:reserve).permit(:id, :description, :shift, :start_time, :end_time, :employee_id, :laboratory_id, quantities_attributes: [:id, :product_id, :amount, :_destroy, products_attributes: [:id, :code, :name, :category_id, :description, :provider]])
+      params.require(:reserve).permit(:id, :description, :shift, :start_time, :end_time, :employee_id, :laboratory_id, :validation_id, quantities_attributes: [:id, :product_id, :amount, :_destroy, products_attributes: [:id, :code, :name, :category_id, :description, :provider]])
     end
 end

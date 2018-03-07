@@ -63,5 +63,6 @@
 </p>
 
 <%= link_to 'Imprimir', stock_path(format: :pdf), class: "btn btn-danger btn-sm" %>
-<%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> |
+<% if policy(@stock).edit? %>
+<%= link_to 'Editar', edit_stock_path(@stock), class: "btn btn-primary btn-sm" %> <% end %> |
 <%= link_to 'Voltar', stocks_path, class: "btn btn-primary btn-sm" %>

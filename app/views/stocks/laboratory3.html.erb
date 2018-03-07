@@ -31,7 +31,7 @@
   </thead>
 
   <tbody>
-    <% @stocks.where(laboratory_id: 4).each do |stock| %>
+    <% @stocks.where(laboratory_id: 3).each do |stock| %>
       <tr>
         <td><%= formatar_laboratory(stock.laboratory_name) %></td>
         <td><%= stock.movement.action %></td>

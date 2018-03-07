@@ -1,5 +1,5 @@
 class ReservePolicy < ApplicationPolicy
-  
+
 	def edit?
 		user.admin?		
 	end
@@ -13,6 +13,10 @@ class ReservePolicy < ApplicationPolicy
 	end
 
 	def destroy?
+		user.admin?		
+	end
+
+	def reservados?
 		user.admin?		
 	end
 

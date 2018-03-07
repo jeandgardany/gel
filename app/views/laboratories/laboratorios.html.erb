@@ -21,18 +21,18 @@
         <td><%= laboratory.description %></td>
         <td><%= laboratory.capacity %></td>
         <td><%= link_to t('.new', :default => t("Mostrar")),
-            laboratory, :class => 'btn btn-success btn-sm' %></td>
+            laboratory, :class => 'btn btn-default btn-xs' %></td>
         <td><%= link_to t('.edit', :default => t("Editar")),
-            edit_laboratory_path(laboratory), :class => 'btn btn-warning btn-sm' %></td>
+            edit_laboratory_path(laboratory), :class => 'btn btn-default btn-xs' %></td>
         <td><%= link_to t('.delete', :default => t("Apagar")),
-          laboratory, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger btn-sm' %></td>
+          laboratory, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-default btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if policy(@laboratories).new? %>
 <%= link_to t('.new', :default => t("helpers.links.novo")),
-            new_laboratory_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to 'Voltar', laboratories_path, class: "btn btn-primary btn-sm" %>
+            new_laboratory_path, :class => 'btn btn-default btn-xs' %> <% end %> |
+<%= link_to 'Voltar', laboratories_path, class: "btn btn-default btn-xs" %>

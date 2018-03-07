@@ -20,11 +20,11 @@
   <thead>
     <tr>
       <th>Solicitante:&nbsp;&nbsp;</th>
-      <th>Laboratório:&nbsp;&nbsp;</th>
-      <th>Descrição:</th>
+      <th>Lab:&nbsp;&nbsp;</th>
       <th>Turno:</th>
       <th>Inicio:&nbsp;&nbsp;</th>
       <th>Final:</th>
+      <th>Validação:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -34,13 +34,16 @@
       <tr>
         <td><%= reserve.employee.name %></td>
         <td><%= formatar_laboratory(reserve.laboratory.name) %></td>
-        <td><%= reserve.description %></td>
         <td><%= reserve.shift %></td>
         <td><%= reserve.start_time.strftime("%d/%m/%Y-%H:%M") %></td>
         <td><%= reserve.end_time.strftime("%d/%m/%Y-%H:%M") %></td>
-        <td><%= link_to 'Mostrar', reserve, class: "btn btn-success btn-sm" %></td>
-        <td><%= link_to 'Editar', edit_reserf_path(reserve), class: "btn btn-warning btn-sm" %></td>
-        <td><%= link_to 'Apagar', reserve, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-sm" %></td>
+        <td><%= formatar_status(reserve.validation_id) %></td>
+        <% if policy(reserve).show? %>
+        <td><%= link_to 'Mostrar', reserve, class: "btn btn-success btn-xs" %></td> <% end %>
+        <% if policy(reserve).edit? %>
+        <td><%= link_to 'Editar', edit_reserf_path(reserve), class: "btn btn-warning btn-xs" %></td> <% end %>
+        <% if policy(reserve).destroy? %>
+        <td><%= link_to 'Apagar', reserve, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger btn-xs" %></td> <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -48,6 +51,6 @@
 
     <%= paginate @reserves %>
 <br>
-<%= link_to 'Imprimir', reserves_path(format: :pdf), class: "btn btn-danger btn-sm" %>
-<%= link_to 'Nova Reserva', new_reserf_path, :class => 'btn btn-primary btn-sm' %>
-<%= link_to 'Voltar', laboratories_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Imprimir', reserves_path(format: :pdf), class: "btn btn-danger btn-xs" %>
+<%= link_to 'Nova Reserva', new_reserf_path, :class => 'btn btn-primary btn-xs' %>
+<%= link_to 'Voltar', laboratories_path, class: "btn btn-primary btn-xs" %>

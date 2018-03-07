@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<%= search_form_for(@q, format: :pdf) do |f| %>
+<%= f.search_field :validation_status_cont, placeholder: 'Pesquisar validação...' %>
+<%= f.search_field :employee_name_cont, placeholder: 'Pesquisar Professor...' %>
+<%= f.search_field :laboratory_name_cont, placeholder: 'Pesquisar Laboratório...' %>
+<%= f.submit %>
+<% end %>
+
+<h1>Reservas dos Laboratórios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Solicitante:&nbsp;&nbsp;</th>
+      <th>Lab:&nbsp;&nbsp;</th>
+      <th>Turno:</th>
+      <th>Inicio:&nbsp;&nbsp;</th>
+      <th>Final:</th>
+      <th>Validação:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reserves.each do |reserve| %>
+      <tr>
+        <td><%= reserve.employee.name %></td>
+        <td><%= formatar_laboratory(reserve.laboratory.name) %></td>
+        <td><%= reserve.shift %></td>
+        <td><%= reserve.start_time.strftime("%d/%m/%Y-%H:%M") %></td>
+        <td><%= reserve.end_time.strftime("%d/%m/%Y-%H:%M") %></td>
+        <td><%= formatar_status(reserve.validation_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Imprimir', reserve_reservados_path(format: :pdf), class: "btn btn-danger btn-xs" %>
+<%= link_to 'Voltar', reports_index_path, class: "btn btn-primary btn-xs" %>

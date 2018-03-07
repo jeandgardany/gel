@@ -51,6 +51,11 @@
       <%= link_to_add_association('Solicitar Produtos', form, :quantities, :class => 'btn btn-primary btn-sm') %>
   </div>
 
+  <div class="field">
+    <%= form.label :validation_id, "Validação" %>
+    <%= form.collection_select :validation_id, Validation.all, :id, :status, prompt: "Selecione" %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

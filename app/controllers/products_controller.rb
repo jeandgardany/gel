@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    authorize Product
     if params[:search]
       @products = Product.search(params[:search])
     else
