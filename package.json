@@ -1,5 +1,7 @@
 {
   "name": "genis_v1_5",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }
