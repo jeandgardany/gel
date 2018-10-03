@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: genis_v1_5_production
-  username: genis_v1_5
-  password: <%= ENV['GENIS_V1_5_DATABASE_PASSWORD'] %>
+  username: root
+  #password: <%= ENV['GENIS_V1_5_DATABASE_PASSWORD'] %>
+  password: 090271jd
